@@ -13,7 +13,7 @@
     "i18next": "^25.4.2",
     "jsonwebtoken": "^9.0.2",
     "next": "15.5.2",
-    "next-auth": "^4.24.11",
+    "next-auth": "^5.0.0-beta.29",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-i18next": "^15.7.3"
