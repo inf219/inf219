@@ -28,6 +28,18 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Install: npm install @elevenlabs/react
 
+## Configuration
+
+Before running the app, create a `.env.local` file in the root of the project and add the following environment variables:
+
+    FEIDE_CLIENT_ID=<din_client_id>
+    FEIDE_CLIENT_SECRET=<din_client_secret>
+    FEIDE_ISSUER=<din_feide_issuer>
+    NEXTAUTH_SECRET=<hemligLangRandomStreng>
+    NEXTAUTH_URL=http://localhost:3000/
+    ELEVENLABS_API_KEY=<your_api_key>
+    NEXT_PUBLIC_AGENT_ID=<your_agent_id>
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
