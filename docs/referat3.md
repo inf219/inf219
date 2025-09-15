@@ -8,7 +8,7 @@
 - Enkel startside med en knapp som sender videre til login
 - Login som foreløpig sender tilbake til startsiden:
  - Denne må omdirigeres til hjemmesiden
-- Enkel hjemmeside med start AI.
+- Enkel hjemmeside med "start samtale".
 - Selve AI-chat siden, hvor du kan snakke med en agent (elevenlabs)
 
 ### Til neste gang:
