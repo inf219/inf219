@@ -15,7 +15,7 @@ bun dev
 ```
 
 ## FEIDE
-To install NextAuth run: npm install next-auth@beta
+You may need to install NextAuth by running: npm install next-auth@beta
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
