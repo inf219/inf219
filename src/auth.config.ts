@@ -3,9 +3,6 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials"; //Brukes bare til mock-login
 
 
-// const ENABLE_MOCK = process.env.ENABLE_MOCK_AUTH === "true" && 
-//           process.env.NODE_ENV !== "production";
-
 //MOCK PROVIDER kan fjernes når vi har tilgang til feide!
 const MockProvider = Credentials({
   name: "Mock-login",

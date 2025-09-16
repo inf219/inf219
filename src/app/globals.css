@@ -1,23 +1,25 @@
-/* globals.css */
+@import "tailwindcss";
+
 
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
+} 
 
 body {
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center;     /* vertical center */
-  background-color: white; /* page background */
+  justify-content: center;    /*horizontal center */
+  align-items: center;       /*vertical center */
+  background-color: white;   /*page background */
   font-family: sans-serif;
 }
 
+
 button {
-  background-color: blue;   /* button background */
-  color: white;             /* text color */
+  background-color: blue;    /*button background */
+  color: white;              /* text color */
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
