@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.15.0",
     "@elevenlabs/react": "^0.6.2",
+    "clsx": "^2.1.1",
     "cookie": "^1.0.2",
     "i18next": "^25.4.2",
     "jsonwebtoken": "^9.0.2",

@@ -43,7 +43,7 @@ export default function Home() {
       >
         <button
           onClick={() =>
-            (window.location.href = '/api/auth/signin?callbackUrl=/home')
+            (window.location.href = '/api/auth/signin?callbackUrl=/home/student')
           }
           className={roboto.className}
           style={{

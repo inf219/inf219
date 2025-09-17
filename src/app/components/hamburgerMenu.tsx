@@ -2,6 +2,10 @@
 
 import { useState, useRef, useEffect } from 'react'
 
+
+
+//En helt enkel hamburgermeny (Dummy), inneholder konto, innstilling og log ut
+//Men det går ikke å trykke på de enda
 export default function HamburgerMenu() {
     const [menuOpen, setMenuOpen] = useState(false)
     const menuRef = useRef<HTMLDivElement>(null)
@@ -22,7 +26,7 @@ export default function HamburgerMenu() {
 
     return (
         <div className="relative" ref={menuRef}>
-            {/* 🍔 Hamburger-knapp */}
+            {/* Hamburger-knapp */}
             <svg
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="w-8 h-8 text-black"
@@ -34,7 +38,7 @@ export default function HamburgerMenu() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
 
-            {/* 📋 Dropdown-meny */}
+            {/* Dropdown-meny */}
             {menuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
