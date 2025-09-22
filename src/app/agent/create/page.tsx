@@ -40,7 +40,7 @@ export default function CreateAgent() {
 
     const data = await res.json();
     if (res.ok) {
-      setResponse(`Agent med navn: "${agentName}" er opprettet`);
+      setResponse(`Agent med navn "${agentName}" er opprettet`);
     } else {
       setResponse(`Feil: ${data.error}`);
     }
@@ -49,24 +49,28 @@ export default function CreateAgent() {
 
 
   return (
-    <main className="flex flex-col justify-center items-center min-h-screen">
+    <main className={`flex flex-col justify-center items-center min-h-screen ${loading ? 'cursor-wait' : 'cursor-default'}`}>
+
       <h1 className="text-2xl font-bold mb-4 items-center">Opprett en agent</h1>
       <InputBox
-      value={agentName}
-      onChange={setAgentName}
-      placeHolder="Navn på agenten">
+        value={agentName}
+        onChange={setAgentName}
+        placeHolder="Navn på agenten">
       </InputBox>
       <InputBox
-      value={firstMessage}
-      onChange={setFirstMessage}
-      placeHolder="Hva skal agenten si først?">
+        value={firstMessage}
+        onChange={setFirstMessage}
+        placeHolder="Hva skal agenten si først?">
       </InputBox>
       <div
         onClick={handleCreate}
-        className="bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-xl w-fit flex items-center gap-2 hover:scale-105 transition duration-200">
+        className={`bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-xl w-fit flex items-center gap-2 hover:scale-105 transition duration-200 ${loading ? 'cursor-wait' : 'cursor-pointer'}`}>
         <p>{loading ? '⏳ Laster...' : 'Opprett agent'}</p>
       </div>
-      {response ? <p className="mt-4">{response}</p> : null}
+      <div>
+        {loading && <p className="mt-4">Oppdaterer {agentName} sin personlighet...</p>}
+        {!loading && response && <p className="mt-4">{response}</p>}
+      </div>
     </main>
   );
 }

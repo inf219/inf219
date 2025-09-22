@@ -1,5 +1,6 @@
 'use client'
 
+import { signOut } from 'next-auth/react'
 import { useState, useRef, useEffect } from 'react'
 
 
@@ -29,7 +30,7 @@ export default function HamburgerMenu() {
             {/* Hamburger-knapp */}
             <svg
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="w-8 h-8 text-black"
+                className="w-8 h-8 text-black transition-transform duration-200 hover:scale-120 cursor-pointer"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={2}
@@ -47,12 +48,13 @@ export default function HamburgerMenu() {
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Innstillinger
                     </a>
-                    <button
-                        onClick={() => console.log("Logg ut")}
-                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                    <a
+                        href="#"
+                        onClick={() => signOut({ callbackUrl: '/' })}
+                        className="block font-bold px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                         Logg ut
-                    </button>
+                    </a>
                 </div>
             )}
         </div>
