@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify(body),
     });
 
+    console.log('POST config: ', body)
     if (!res.ok) {
         const errText = await res.text();
         return NextResponse.json({error: 'Failed to create agent', details: errText}, {status: 500});

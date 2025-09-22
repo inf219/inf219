@@ -1,56 +1,72 @@
 'use client';
 
 import { useState } from "react";
+import InputBox from "@/app/components/inputBox";
 
 
 export default function CreateAgent() {
   const [response, setResponse] = useState<string | null>(null);
-  const handleCreate = async() => {
-        const res = await fetch('/api/agents', {
+  const [loading, setLoading] = useState(false);
+  const [agentName, setAgentName] = useState('');
+  const [firstMessage, setFirstMessage] = useState('');
+
+
+  const handleCreate = async () => {
+    setLoading(true);
+    const res = await fetch('/api/agents', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         conversation_config: {
+          tts: {
+            model_id: 'eleven_turbo_v2_5',
+            voice_id: 'CMVyxPycEkgLpEF85ShA',
+          },
           agent: {
-            firstMessage: 'Hei! For en nydelig dag for en hyggelig prat',
+            first_message: firstMessage,
             language: 'no',
             prompt: {
-              prompt: 'Du er en hjelpsom norsk assistent.',
+              prompt: 'Du er en hyggelig bergenser som liker å hjelpe med skole',
             },
             llm: {
               model: 'turbo_v2_5',
             },
           },
-          tts: {
-            voiceId: 'CMVyxPycEkgLpEF85ShA',
-            model_id: 'eleven_turbo_v2_5',
-          },
         },
-        platform_settings: {
-          name: 'TestOpprettAgent',
-          tags: ['test', 'norsk'],
-        },
+        name: agentName,
+        tags: ['test', 'norsk'],
       }),
     });
 
     const data = await res.json();
     if (res.ok) {
-      setResponse(`Agent opprettet! ID: ${data.name}`);
+      setResponse(`Agent med navn: "${agentName}" er opprettet`);
     } else {
       setResponse(`Feil: ${data.error}`);
     }
+    setLoading(false);
   };
 
- 
+
   return (
-    <main className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Opprett en agent</h1>
-      <button
+    <main className="flex flex-col justify-center items-center min-h-screen">
+      <h1 className="text-2xl font-bold mb-4 items-center">Opprett en agent</h1>
+      <InputBox
+      value={agentName}
+      onChange={setAgentName}
+      placeHolder="Navn på agenten">
+      </InputBox>
+      <InputBox
+      value={firstMessage}
+      onChange={setFirstMessage}
+      placeHolder="Hva skal agenten si først?">
+      </InputBox>
+      <div
         onClick={handleCreate}
-      >
-        Opprett agent
-      </button>
-      {response && <p className="mt-4">{response}</p>}
+        className="bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-xl w-fit flex items-center gap-2 hover:scale-105 transition duration-200">
+        <p>{loading ? '⏳ Laster...' : 'Opprett agent'}</p>
+      </div>
+      {response ? <p className="mt-4">{response}</p> : null}
     </main>
   );
 }
