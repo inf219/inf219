@@ -9,6 +9,7 @@ export default function CreateAgent() {
   const [loading, setLoading] = useState(false);
   const [agentName, setAgentName] = useState('');
   const [firstMessage, setFirstMessage] = useState('');
+  const [aiPrompt, setPrompt] = useState('')
 
 
   const handleCreate = async () => {
@@ -26,7 +27,7 @@ export default function CreateAgent() {
             first_message: firstMessage,
             language: 'no',
             prompt: {
-              prompt: 'Du er en hyggelig bergenser som liker å hjelpe med skole',
+              prompt: aiPrompt,
             },
             llm: {
               model: 'turbo_v2_5',
@@ -61,6 +62,11 @@ export default function CreateAgent() {
         value={firstMessage}
         onChange={setFirstMessage}
         placeHolder="Hva skal agenten si først?">
+      </InputBox>
+      <InputBox
+        value={aiPrompt}
+        onChange={setPrompt}
+        placeHolder="Prompt..">
       </InputBox>
       <div
         onClick={handleCreate}
