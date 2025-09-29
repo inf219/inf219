@@ -8,7 +8,7 @@
 
 ## Videre:
 
-Alle: Se på react bits, undersøke om vi trenger å kjøpe abonnement Elevenlabs
-Leo: React components og tailwind, logg inn med feide, dokumentasjon databaser
-Synne: Innlogging med feide og opprette agent i appen
-Emilie: Databaser, opprette agent i appen
+- Alle: Se på react bits, undersøke om vi trenger å kjøpe abonnement Elevenlabs
+- Leo: React components og tailwind, logg inn med feide, dokumentasjon databaser
+- Synne: Innlogging med feide og opprette agent i appen
+- Emilie: Databaser, opprette agent i appen
