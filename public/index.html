@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Manager</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">Agent Manager</h1>
+
+        <div id="login" class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Login</h2>
+            <input type="text" id="username" placeholder="Enter username" class="border p-2 rounded w-full mb-2">
+            <button onclick="login()" class="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
+        </div>
+
+        <div id="agent-manager" class="hidden">
+            <h2 class="text-xl font-semibold mb-2">Create Agent</h2>
+            <input type="text" id="agent-name" placeholder="Enter agent name" class="border p-2 rounded w-full mb-2">
+            <button onclick="createAgent()" class="bg-green-500 text-white px-4 py-2 rounded">Create Agent</button>
+
+            <h2 class="text-xl font-semibold mt-6 mb-2">Agent List</h2>
+            <button onclick="fetchAgents()" class="bg-gray-500 text-white px-4 py-2 rounded mb-4">Refresh List</button>
+            <ul id="agent-list" class="list-disc pl-6"></ul>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username })
+            });
+            const result = await response.json();
+            if (result.success) {
+                currentUser = username;
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('agent-manager').classList.remove('hidden');
+            } else {
+                alert(result.message);
+            }
+        }
+
+        async function createAgent() {
+            const agentName = document.getElementById('agent-name').value;
+            const response = await fetch('/agents', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser, agentId: agentName })
+            });
+            const result = await response.json();
+            if (result.success) {
+                alert('Agent created!');
+                fetchAgents();
+            } else {
+                alert(result.message);
+            }
+        }
+
+        async function fetchAgents() {
+            const response = await fetch('/agents');
+            const agents = await response.json();
+            const list = document.getElementById('agent-list');
+            list.innerHTML = '';
+            agents.forEach(agent => {
+                const item = document.createElement('li');
+                item.textContent = `${agent.agent_id} (created by ${agent.user_id})`;
+                list.appendChild(item);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -11,20 +11,24 @@
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.15.0",
     "@elevenlabs/react": "^0.6.2",
+    "body-parser": "^2.2.0",
     "clsx": "^2.1.1",
     "cookie": "^1.0.2",
+    "express": "^5.1.0",
     "i18next": "^25.4.2",
     "jsonwebtoken": "^9.0.2",
     "next": "15.5.2",
     "next-auth": "^5.0.0-beta.29",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-i18next": "^15.7.3"
+    "react-i18next": "^15.7.3",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/cookie": "^0.6.0",
+    "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",

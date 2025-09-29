@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  theme: { extend: {} },
-  plugins: [],
+    content: ['./public/**/*.{html,js}'], // Legg til stien til HTML-filer
+    theme: {
+        extend: {},
+    },
+    plugins: [],
 };
 
