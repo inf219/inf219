@@ -14,12 +14,12 @@ export default async function HomePage() {
       <UserWelcome name={session?.user?.name} role="Lærer"></UserWelcome>
       <div className="mt-20">
         <LinkButton
-          href="/agent"
+          href="/agent/create"
           className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l 
           focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 
-          font-medium rounded-lg text-sm px-8 py-4 text-center me-2 mb-2"
+          font-medium rounded-lg text-sm px-8 py-4 text-center me-2 mb-2 hover:scale-105 transition duration-200"
         >
-          Gå til agenten
+          Opprett ny agent
         </LinkButton>
       </div>
     </>
