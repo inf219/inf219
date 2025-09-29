@@ -8,7 +8,7 @@ export default function Home() {
                 KI-assistent
             </h1>
             <p className=" mb-2 text-center">
-                Øv på å forbedre norskkunnskapene dine med denne assistenten 
+                Øv på å forbedre norskkunnskapene dine med denne assistenten
             </p>
             <Conversation></Conversation> {/* Renderer  samtale-komponenten*/}
         </div>
