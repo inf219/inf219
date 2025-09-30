@@ -21,7 +21,7 @@ export default function CreateAgent() {
         conversation_config: {
           tts: {
             model_id: 'eleven_turbo_v2_5',
-            voice_id: 'CMVyxPycEkgLpEF85ShA',
+            voice_id: 'vUmLiNBm6MDcy1NUHaVr',
           },
           agent: {
             first_message: firstMessage,
