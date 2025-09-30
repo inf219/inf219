@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from "react";
 import InputBox from "@/app/components/inputBox";
+import { useState } from "react";
 
 
 export default function CreateAgent() {
@@ -21,7 +21,7 @@ export default function CreateAgent() {
         conversation_config: {
           tts: {
             model_id: 'eleven_turbo_v2_5',
-            voice_id: 'vUmLiNBm6MDcy1NUHaVr',
+            voice_id: 'CMVyxPycEkgLpEF85ShA',
           },
           agent: {
             first_message: firstMessage,
