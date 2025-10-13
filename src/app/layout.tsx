@@ -1,9 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import LinkButton from './components/linkButton'
 
 export const metadata: Metadata = {
-  title: 'Centered Button App',
-  description: 'A simple Next.js app with a centered button',
+  title: 'App Layout',
+  description: 'A Next.js app with a shared layout',
 }
 
 export default function RootLayout({
@@ -13,7 +14,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-gray-100 text-gray-900">
+        <header className="p-4 bg-blue-600 text-white">
+          <h1 className="text-xl font-bold">App Header</h1>
+            <nav className="mt-2">
+            <LinkButton href="/home/student">Student</LinkButton>
+            <LinkButton href="/home/teacher">Teacher</LinkButton>
+            </nav>
+        </header>
+        <main className="p-6">{children}</main>
+      </body>
     </html>
   )
 }

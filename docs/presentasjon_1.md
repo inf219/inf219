@@ -1,0 +1,31 @@
+# 13.10.25
+- Vær helt klar med alt teknisk før vi går fram. Sjekk at alt fungerer  
+- Prøve å holde presentasjonen bred med ikke så mange tekniske detaljer  
+- Live demo  
+- Q&A  
+- Bilder, lite tekst  
+- Be om tilbakemelding, pass på at de henger med  
+- Fokuset skal ikke være PowerPoint'en  
+- Gjerne tegn på tavlen  
+- Variasjon i hva som skjer  
+- Ikke under fontstørrelse 24  
+- Bruk fonter som er sans serif  
+- 6-10 linjer per slide (ikke mer enn 7 ord per linje og ikke mer enn 7 linjer per slide)  
+- 3 min per slide med innhold, 1 min per slide med bilde eller eksempel  
+- Leslighet er viktig  
+- Animasjoner kan være bra (men ikke overdriv!)  
+- Ikke for mange bullet points  
+- Ikke bruk mer enn 3 farger per slide  
+- Hvis mulig, test slidesene på prosjektor før presentasjonen  
+- Bra med bilder  
+- Kan bruker GIF'er  
+- Skal vi bruke figurer, slå på antialiasing  
+- Øv på framføring  
+- Unngå nervøsitet (lol)  
+- Vi bruker Google presentasjoner  
+- Hamster i hendene  
+- Prøv å oppfør deg så naturlig så mulig  
+-  Ikke be om unnskyldning  
+- Hold tiden du har fått  
+- 10 min per gruppe, vi må treffe  
+- Konklusjon på slutten, takke for oss og spørre om noen har noen spørsmål  

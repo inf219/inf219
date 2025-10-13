@@ -1,62 +1,35 @@
-'use client';
+"use client";
 
+import { useRouter } from "next/navigation";
 import { Roboto } from 'next/font/google';
-import Image from 'next/image';
 
 const roboto = Roboto({
   subsets: ['latin'],
   weight: ['400', '700'],
 });
 
-export default function Home() {
-  return (
-    <div
-      style={{
-        minHeight: '100vh',
-        width: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundImage: 'url("/dekorelement-vlfk.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      {/* Logo */}
-      <div style={{ padding: '32px 16px 16px 16px' }}>
-        <Image
-          src="/sidestilt-logo-vlfk.png"
-          alt="Logo"
-          width={120}
-          height={40}
-          style={{ objectFit: 'contain' }}
-        />
-      </div>
+export default function HomePage() {
+  const router = useRouter();
 
-      {/* Knapp */}
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+  const handleLoginRedirect = (role: string) => {
+    router.push(`/api/auth/signin?role=${role}`); // Legger til rollen som query-parameter
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-2xl font-bold mb-4">Velkommen til appen</h1>
+      <div className="flex space-x-4">
         <button
-          onClick={() =>
-            (window.location.href = '/api/auth/signin?callbackUrl=/home/teacher')
-          }
-          className={roboto.className}
-          style={{
-            backgroundColor: '#FF5C39',
-            color: '#fff',
-            padding: '12px 24px',
-            borderRadius: '12px',
-            fontWeight: 700,
-            boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
-            cursor: 'pointer',
-          }}
+          onClick={() => handleLoginRedirect("student")}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
-          Logg inn
+          Logg inn som elev
+        </button>
+        <button
+          onClick={() => handleLoginRedirect("teacher")}
+          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Logg inn som lærer
         </button>
       </div>
     </div>
