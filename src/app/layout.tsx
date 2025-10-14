@@ -14,15 +14,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-100 text-gray-900">
-        <header className="p-4 bg-blue-600 text-white">
+      <body className="bg-gray-100 text-gray-900 ">
+        <header className="p-4 bg-blue-600">
           <h1 className="text-xl font-bold">App Header</h1>
-            <nav className="mt-2">
+            <nav className="mt-2 space-x-4">
             <LinkButton href="/home/student">Student</LinkButton>
             <LinkButton href="/home/teacher">Teacher</LinkButton>
             </nav>
         </header>
-        <main className="p-6">{children}</main>
+        <main className='w-full'>{children}</main>
       </body>
     </html>
   )

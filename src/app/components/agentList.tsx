@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 interface Agent {
     agent_id: string;
     name: string;
+    tags?: string;
     // Add other fields from ElevenLabs response if needed (e.g., description)
 }
 
@@ -68,15 +69,15 @@ export function AgentList() {
                             key={agent.agent_id}
                             className="p-5 bg-gray-100 rounded-lg border border-blue-300 flex justify-between items-center w-full" 
                         >
-                            <div>
+                            <div className='px-4'>
                                 <h3 className="font-semibold">{agent.name}</h3>
-                                <p className="text-sm text-gray-600">ID: {agent.agent_id}</p>
+                                <p className="text-sm text-gray-600">{agent.tags}</p>
                             </div>
                             <button
-                                onClick={() => router.push(`agent/talk?agent_id=${agent.agent_id}`)}
+                                onClick={() => router.push(`/agent/talk?agent_id=${agent.agent_id}`)}
                                 className="px-2 py-1 bg-green-500 text-white rounded"
                             >
-                                Snakk med agenten
+                                Snakk med {agent.name}
                             </button>
                         </li>
                     ))}
