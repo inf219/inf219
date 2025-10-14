@@ -73,7 +73,7 @@ export function AgentList() {
                                 <p className="text-sm text-gray-600">ID: {agent.agent_id}</p>
                             </div>
                             <button
-                                onClick={() => router.push(`agent/talk?agent_id=${agent.agent_id}`)}
+                                onClick={() => router.push(`/agent/talk?agent_id=${agent.agent_id}`)}
                                 className="px-2 py-1 bg-green-500 text-white rounded"
                             >
                                 Snakk med agenten

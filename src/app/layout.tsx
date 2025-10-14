@@ -1,6 +1,6 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import LinkButton from './components/linkButton'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Teaching Agents',
