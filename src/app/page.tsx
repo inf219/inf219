@@ -12,7 +12,7 @@ export default function HomePage() {
   const router = useRouter();
 
   const handleLoginRedirect = (role: string) => {
-    router.push(`/api/auth/signin?role=${role}`); // Legger til rollen som query-parameter
+    router.push(`/api/auth/signin?role=${role}&callbackUrl=/home/${role}`); // Legger til rollen som query-parameter
   };
 
   return (

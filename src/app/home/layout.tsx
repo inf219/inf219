@@ -1,5 +1,5 @@
 // layout.tsx
-import { auth } from "@/auth";
+//import { auth } from "@/auth";
 import HamburgerMenu from "../components/hamburgerMenu";
 
 const backgroundColor = "#C9EDF7";
@@ -10,7 +10,7 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
+  //const session = await auth();
 
   return (
     <div className="min-h-screen w-full" style={{ backgroundColor }}>

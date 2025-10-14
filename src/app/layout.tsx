@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import LinkButton from './components/linkButton'
 
 export const metadata: Metadata = {
-  title: 'App Layout',
+  title: 'Teaching Agents',
   description: 'A Next.js app with a shared layout',
 }
 

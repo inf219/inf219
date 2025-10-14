@@ -7,7 +7,7 @@ export default function AgentsPage() {
             <h1 className="text-4xl font-bold mb-8 text-center">
             Agenter:
             </h1>
-            <p className="mb-8 text-center">
+            <p className="mb-8 text-center mt-220">
             Her er en oversikt over agentene dine på ElevenLabs.
             </p>
             <AgentList />
