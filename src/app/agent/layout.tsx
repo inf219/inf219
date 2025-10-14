@@ -1,7 +1,7 @@
 // layout.tsx
 import { auth } from "@/auth";
 import HamburgerMenu from "../components/hamburgerMenu";
-import LinkButton from "../components/linkButton";
+import LinkButton from "../components/buttons/linkButton";
 
 const backgroundColor = "#C9EDF7";
 const topColor = "#9ADBE8";

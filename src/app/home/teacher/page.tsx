@@ -1,5 +1,5 @@
 // page.tsx (i samme mappe som layout.tsx)
-import LinkButton from "@/app/components/linkButton";
+import LinkButton from "@/app/components/buttons/linkButton";
 import UserWelcome from "@/app/components/userWelcome";
 import { auth } from "@/auth";
 

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 
 
 html,
@@ -12,8 +14,8 @@ body {
   display: flex;
   justify-content: center;    /*horizontal center */
   align-items: center;       /*vertical center */
-  background-color: white;   /*page background */
-  font-family: sans-serif;
+  background-color: #C9EDF7;   /*page background */
+  font-family: 'Roboto',sans-serif;
 }
 
 
