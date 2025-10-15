@@ -125,7 +125,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/emilie/Desktop/react/inf219/generated/prisma",
+      "value": "/Users/leosolheim/Documents/Skole/UiB/INF219/inf219-1/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -139,7 +139,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/emilie/Desktop/react/inf219/prisma/schema.prisma",
+    "sourceFilePath": "/Users/leosolheim/Documents/Skole/UiB/INF219/inf219-1/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
