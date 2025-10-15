@@ -3,6 +3,7 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials"; //Brukes bare til mock-login
 import { PrismaClient } from "../generated/prisma";
 
+
 const prisma = new PrismaClient();
 
 //MOCK PROVIDER kan fjernes når vi har tilgang til feide!
@@ -22,19 +23,19 @@ const MockProvider = Credentials({
     //Dersom brukernavn eller passord mangler, avbrytes innlogging
     if (!username || !password) return null;
 
-    //Sjekk i databasen om brukeren finnes
-    // const user = await prisma.user.findFirst({
-    //   where: { name: String(username) },
-    // });
+    //Sjekk i databasen om brukeren finnes (Sjekkes nå på navn direkte!)
+     const user = await prisma.user.findFirst({
+       where: { name: String(username) },
+     });
 
     // //Hvis brukeren ikke finnes, returner null (innlogging feiler)
-    // if (!user) return null;
+    if (!user) return null;
 
 
     return {
-      id: "mock-user",
-      name: String(username),
-      email: `${credentials.username}@example.com`,
+      id: String(user.id),
+      name: user.name,
+      email: user.email || "",
     };
   },
 });
