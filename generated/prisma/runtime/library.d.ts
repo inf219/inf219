@@ -3063,6 +3063,7 @@ declare type QueryPlanNode = {
         from: QueryPlanNode;
         to: QueryPlanNode;
         fields: string[];
+        fields: string[];
     };
 } | {
     type: 'initializeRecord';

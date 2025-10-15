@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
 html,
@@ -9,24 +10,24 @@ body {
 } 
 
 body {
-  display: flex;
-  justify-content: center;    /*horizontal center */
-  align-items: center;       /*vertical center */
-  background-color: white;   /*page background */
-  font-family: sans-serif;
+  /*display: flex;*/
+  justify-content: center;       /*horizontal center */
+  align-items: center;           /*vertical center */
+  background-color: #C9EDF7;   /*page background */
+  font-family: 'Roboto',sans-serif;
 }
 
 
 button {
-  background-color: #9ADBE8;    /*button background */
-  color: white;              /* text color */
+  background-color: #9ADBE8;     /*button background */
+  color: black;                  /* text color */
   border: none;
-  padding: 12px 24px;
+  padding: 12px 12px;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: darkblue;
+  background-color: #6ECAD9;   /*button hover background */
 }

@@ -1,8 +1,6 @@
 // layout.tsx
-//import { auth } from "@/auth";
 import HamburgerMenu from "../components/hamburgerMenu";
 
-const backgroundColor = "#C9EDF7";
 const topColor = "#9ADBE8";
 
 export default async function Layout({
@@ -10,10 +8,9 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  //const session = await auth();
 
   return (
-    <div className="min-h-screen w-full" style={{ backgroundColor }}>
+    <div className="min-h-screen w-full">
       {/* TopBar */}
       <div
         className="sticky top-0 z-50 w-full shadow-2xl px-6 py-4 flex items-center justify-between"

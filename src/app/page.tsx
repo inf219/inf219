@@ -1,12 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Roboto } from 'next/font/google';
 
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
 
 export default function HomePage() {
   const router = useRouter();
@@ -21,13 +16,13 @@ export default function HomePage() {
       <div className="flex space-x-4">
         <button
           onClick={() => handleLoginRedirect("student")}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="px-4 py-2"
         >
           Logg inn som elev
         </button>
         <button
           onClick={() => handleLoginRedirect("teacher")}
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+          className="px-4 py-2"
         >
           Logg inn som lærer
         </button>
