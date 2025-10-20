@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials"; //Brukes bare til moc
 import { PrismaClient } from "../generated/prisma";
 
 
+
 const prisma = new PrismaClient();
 
 //MOCK PROVIDER kan fjernes når vi har tilgang til feide!
@@ -11,8 +12,8 @@ const prisma = new PrismaClient();
 const MockProvider = Credentials({
   name: "Mock-login",
   credentials: {
-    username: { label: "Brukernavn", type: "text" },
-    password: { label: "Passord", type: "password" },
+    username: { label: "Brukernavn", type: "text", placeholder: "Skriv inn brukernavn" },
+    password: { label: "Passord", type: "password", placeholder: "Skriv inn passord" },
   },
 
   //Input credentials hentes når en bruker prøver å logge inn
@@ -35,6 +36,7 @@ const MockProvider = Credentials({
     return {
       id: String(user.id),
       name: user.name,
+      role: user.role,
       email: user.email || "",
     };
   },
@@ -48,7 +50,7 @@ const FeideProvider = {
   issuer: env.feideIssuer,
   clientId: env.feideClientId,
   clientSecret: env.feideClientSecret,
-  authorization: { params: { scope: "openid email profile" } },
+  authorization: { params: { scope: "openid email profile" } }, //Her kan flere scopes legges til, ut i fra hvilken info vi vil ha tilbake fra Feide
   //idToken: true,
   profile(profile: any) {
     return {
