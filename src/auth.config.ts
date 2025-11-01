@@ -2,6 +2,8 @@ import { env } from "./env";
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials"; //Brukes bare til mock-login
 import { PrismaClient } from "../generated/prisma";
+import type { JWT } from "next-auth/jwt";
+import type { Session } from "next-auth";
 
 
 
@@ -62,8 +64,37 @@ const FeideProvider = {
 };
 
 const config: NextAuthConfig = {
-  providers: [MockProvider, FeideProvider as any],
+  providers: [
+    MockProvider, 
+    FeideProvider as any ],
   secret: env.nextAuthSecret,
+
+
+  //Setter id og role i JWT token og session (hentet fra brukerobjektet ved innlogging)
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+          token.id = (user as any).id;
+          token.role = (user as any).role;
+        }
+
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as "STUDENT" | "TEACHER";
+      }
+
+      return session;
+    },
+  },
+
+  session: {
+    strategy: "jwt",
+  },
+
 } satisfies NextAuthConfig;
 
 export default config;
