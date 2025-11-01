@@ -1,32 +1,28 @@
-"use client";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-import { useRouter } from "next/navigation";
+export default async function HomePage() {
+  const session = await auth();
 
+  // Hvis innlogget, redirect basert på rolle
+  if (session) {
+    if (session.user.role === "TEACHER") {
+      redirect("/home/teacher");
+    } else if (session.user.role === "STUDENT") {
+      redirect("/home/student");
+    }
+  }
 
-export default function HomePage() {
-  const router = useRouter();
-
-  const handleLoginRedirect = (role: string) => {
-    router.push(`/api/auth/signin?role=${role}&callbackUrl=/home/${role}`); // Legger til rollen som query-parameter
-  };
-
+  // Hvis ikke innlogget, vis login
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold mb-4">Velkommen til appen</h1>
-      <div className="flex space-x-4">
-        <button
-          onClick={() => handleLoginRedirect("student")}
-          className="px-4 py-2"
-        >
-          Logg inn som elev
-        </button>
-        <button
-          onClick={() => handleLoginRedirect("teacher")}
-          className="px-4 py-2"
-        >
-          Logg inn som lærer
-        </button>
-      </div>
+      <h1 className="text-2xl font-bold mb-4">Velkommen</h1>
+      <a 
+        href="/api/auth/signin?callbackUrl=/"
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Logg inn
+      </a>
     </div>
   );
 }
