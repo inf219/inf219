@@ -24,13 +24,7 @@ export default async function HomePage() {
         >
           Se dine agenter
         </LinkButton>
-        <LinkButton
-          href="/home/teacher/students"
-          className="mb-2 ms-2 py-4 px-8"
-        >
-          Se alle elever
-        </LinkButton>
-        <img
+      <img
         src="/wavingmaskot.png"
         alt="Tale Maskot"
         className="w-54 relative z-10 
