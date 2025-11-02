@@ -19,7 +19,7 @@ export default async function HomePage() {
           Opprett ny agent
         </LinkButton>
         <LinkButton
-          href="/agents"
+          href="/home/global/agents"
           className="mb-2 ms-2 py-4 px-8"
         >
           Se dine agenter
@@ -37,7 +37,7 @@ export default async function HomePage() {
       <img
         src="/wavingmaskot.png"
         alt="Tale Maskot"
-        className="w-48 relative self-end mt-20 z-10
+        className="w-54 relative self-end mt-1 z-10
              drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
              drop-shadow-[0_0_36px_rgba(14,165,233,0.25)] "
       />

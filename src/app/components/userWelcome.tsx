@@ -13,7 +13,7 @@ export default function UserWelcome({ name, role }: Props) {
       className="mt-20 border-2 shadow-xl rounded-full p-20 h-64"
       style={{ borderColor: "#00C6FB" }}
     >
-      <h1 className="text-6xl font-medium text-center text-white">
+      <h1 className="text-6xl font-medium text-center text-white text-[#00C6FB]">
         Velkommen, {name ?? "bruker"}
       </h1>
       {role && (

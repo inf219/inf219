@@ -1,4 +1,4 @@
-import { Conversation } from '../../components/conversation';
+import { Conversation } from '../../../components/conversation';
 
 export default function Home() {
     return (
