@@ -14,21 +14,24 @@ export default async function HomePage() {
       <div className="mt-20">
         <LinkButton
           href="/home/teacher/create"
-          className="!text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l 
-          focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 
-          font-medium rounded-lg text-sm px-8 py-4 text-center me-2 mb-2 hover:scale-105 transition duration-200"
+          className="mb-2 me-2 py-4 px-8"
         >
           Opprett ny agent
         </LinkButton>
         <LinkButton
           href="/agents"
-          className="!text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l 
-          focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 
-          font-medium rounded-lg text-sm px-8 py-4 text-center me-2 mb-2 hover:scale-105 transition duration-200"
+          className="mb-2 ms-2 py-4 px-8"
         >
           Se dine agenter
         </LinkButton>
       </div>
+      <img
+        src="/wavingmaskot.png"
+        alt="Tale Maskot"
+        className="w-48 relative self-end mt-20 z-10
+             drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+             drop-shadow-[0_0_36px_rgba(14,165,233,0.25)] "
+      />
     </>
   );
 }

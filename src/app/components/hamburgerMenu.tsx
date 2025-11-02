@@ -30,7 +30,7 @@ export default function HamburgerMenu() {
             {/* Hamburger-knapp */}
             <svg
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="w-8 h-8 text-black transition-transform duration-200 hover:scale-120 cursor-pointer"
+                className="w-8 h-8 text-white transition-transform duration-200 hover:scale-120 cursor-pointer"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={2}

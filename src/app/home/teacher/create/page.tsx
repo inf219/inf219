@@ -50,9 +50,10 @@ export default function CreateAgent() {
 
 
   return (
-    <main className={`flex flex-col justify-center items-start min-h-screen ${loading ? 'cursor-wait' : 'cursor-default'}`}>
+    <main className={`flex flex-col items-center py-22 ${loading ? 'cursor-wait' : 'cursor-default'}`}>
 
-      <h1 className="text-2xl font-bold mb-4 items-center">Opprett en agent</h1>
+    <div className={"max-w-lg mx-auto p-8 rounded-2xl bg-white shadow-md ring-1 ring-slate-200"}>
+      <h1 className="text-center text-2xl font-semibold mb-6 text-[#0B132B]">Opprett en agent</h1>
       
       <InputBox
         value={agentName}
@@ -70,15 +71,23 @@ export default function CreateAgent() {
         placeHolder={`Beskriv agentens personlighet og kunnskap \n\nEksempel: Du er en hjelpsom assistent som kan svare på spørsmål om historie.`}
         size="large">
       </InputBox>
-      <div
+      <button
         onClick={handleCreate}
-        className={`bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-xl w-fit flex items-center gap-2 hover:scale-105 transition duration-200 ${loading ? 'cursor-wait' : 'cursor-pointer'}`}>
+        className={`!w-full !sm:w-auto !inline-flex !items-center !justify-center !rounded-lg
+         !px-4 !py-2.5 !font-medium !shadow-sm !transition
+         !hover:bg-sky-700 !active:bg-sky-800
+         !focus:outline-none !focus:ring-2 !focus:ring-sky-500 !focus:ring-offset-2
+         !disabled:bg-sky-300 !disabled:cursor-not-allowed${loading ? ' cursor-wait' : ''}`}>
         <p>{loading ? '⏳ Laster...' : 'Opprett agent'}</p>
-      </div>
+      </button>
       <div>
-        {loading && <p className="mt-4">Oppdaterer {agentName} sin personlighet...</p>}
-        {!loading && response && <p className="mt-4">{response}</p>}
+        {loading && <p className="mt-8 text-center">Oppretter {agentName}...</p>}
+        {!loading && response && <p className="mt-4 text-center">{response}</p>}
       </div>
+    </div>
     </main>
   );
 }
+
+
+

@@ -13,21 +13,31 @@ body {
   /*display: flex;*/
   justify-content: center;       /*horizontal center */
   align-items: center;           /*vertical center */
-  background-color: #C9EDF7;   /*page background */
+  background: linear-gradient(180deg, #0B132B 0%, #111C44 50%, #1A234D 80%);   /*page background */
   font-family: 'Roboto',sans-serif;
 }
 
 
 button {
-  background-color: #9ADBE8;     /*button background */
-  color: black;                  /* text color */
-  border: none;
+  background: linear-gradient(180deg, #00C6FB 0%, #0096FF 100%);     /*button background */
+  color: #fff;                  /* text color */
+  border: 2px solid #2563EB;   /*button border */
   padding: 12px 12px;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 button:hover {
-  background-color: #6ECAD9;   /*button hover background */
+  transform: translateY(-1px) scale(1.03);
+
+  /* lysere gradient på hover */
+  background: linear-gradient(180deg, #19D2FF 0%, #0AA2FF 100%);
 }
+
