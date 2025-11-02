@@ -1,6 +1,6 @@
 import React from "react";
 
-const topColor = "#9ADBE8";
+const topColor = "#0F172A";
 
 interface Props {
   name?: string | null;
@@ -10,10 +10,10 @@ interface Props {
 export default function UserWelcome({ name, role }: Props) {
   return (
     <div
-      className="mt-10 border-2 shadow-xl rounded-full p-20 h-64"
-      style={{ backgroundColor: topColor, borderColor: "#6ECAD9" }}
+      className="mt-20 border-2 shadow-xl rounded-full p-20 h-64"
+      style={{ borderColor: "#00C6FB" }}
     >
-      <h1 className="text-6xl font-medium text-center text-black">
+      <h1 className="text-6xl font-medium text-center text-white">
         Velkommen, {name ?? "bruker"}
       </h1>
       {role && (

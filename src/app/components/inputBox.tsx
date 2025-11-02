@@ -25,7 +25,8 @@ export default function InputBox({
             placeholder={placeHolder}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className={`border border-gray-600 rounded mb-4 bg-white px-2 py-2 w-104 ${sizeClasses[size]}`}>
+            className={`border border-slate-300 rounded-lg mb-4 bg-white px-2 py-2 w-full 
+                text-slate-900 placeholder:text-slate-400 hover:bg-slate-50 ${sizeClasses[size]}`}>
         </textarea>
     )
 }

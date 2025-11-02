@@ -2,7 +2,7 @@
 import HamburgerMenu from "../components/hamburgerMenu";
 import BackButton from "../components/buttons/backButton";
 
-const topColor = "#9ADBE8";
+const topColor = "#42C4A3";
 
 export default async function Layout({
   children,
@@ -14,11 +14,10 @@ export default async function Layout({
     <div className="min-h-screen w-full">
       {/* TopBar */}
       <div
-        className="sticky top-0 z-50 w-full shadow-2xl px-6 py-4 flex items-center justify-between"
-        style={{ backgroundColor: topColor, borderColor: "#6ECAD9" }}
+        className="sticky top-0 z-50 w-full shadow-2xl px-6 py-4 flex items-center justify-between bg-[#0B132B]"
       >
         <img
-          src="/sidestilt-logo-vlfk.png"
+          src="/sidestilt-logo-kvit-skrift-vlfk.png"
           alt="Fylkeskommunen logo"
           className="h-16 w-auto"
         />
@@ -30,7 +29,7 @@ export default async function Layout({
       </div>
 
       {/* Her får du innhold fra page.tsx */}
-      <main className="flex flex-col items-center justify-between p-8 h-full">
+      <main className="flex flex-col items-center p-4">
         {children}
       </main>
     </div>

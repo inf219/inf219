@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import LinkButton from "./components/buttons/linkButton";
 
 export default async function HomePage() {
   const session = await auth();
@@ -16,13 +17,21 @@ export default async function HomePage() {
   // Hvis ikke innlogget, vis login
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold mb-4">Velkommen</h1>
-      <a 
+      <h1 className="text-8xl font-bold mb-4 text-[#00C6FB]">Velkommen</h1>
+      <h2 className="text-xl font-bold mb-4 text-[#CFEAFF]">Tale - Din digitale læringsassistent</h2>
+      <img
+        src="/maskot1.png"
+        alt="Tale Maskot"
+          className="w-48 h-68 relative z-10
+             drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+             drop-shadow-[0_0_36px_rgba(14,165,233,0.25)] "/>
+
+      <LinkButton 
         href="/api/auth/signin?callbackUrl=/"
-        className="px-4 py-2 bg-blue-500 text-white rounded"
+        className="sm:w-auto !px-8 !py-4 !rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
       >
         Logg inn
-      </a>
+      </LinkButton>
     </div>
   );
 }

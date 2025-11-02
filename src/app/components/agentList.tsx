@@ -75,8 +75,7 @@ export function AgentList() {
                             </div>
                             <button
                                 onClick={() => router.push(`/agent/talk?agent_id=${agent.agent_id}`)}
-                                className="px-2 py-1 bg-green-500 text-white rounded"
-                            >
+                                className="px-2 py-1">
                                 Snakk med {agent.name}
                             </button>
                         </li>
