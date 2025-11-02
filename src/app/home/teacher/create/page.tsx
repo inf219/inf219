@@ -52,8 +52,14 @@ export default function CreateAgent() {
   return (
     <main className={`flex flex-col items-center py-22 ${loading ? 'cursor-wait' : 'cursor-default'}`}>
 
-    <div className={"max-w-lg mx-auto p-8 rounded-2xl bg-white shadow-md ring-1 ring-slate-200"}>
-      <h1 className="text-center text-2xl font-semibold mb-6 text-[#0B132B]">Opprett en agent</h1>
+    <div className={`relative inline-block overflow-visible
+  max-w-xl w-full mx-auto rounded-2xl
+  bg-white/6 backdrop-blur-lg backdrop-saturate-150
+  border border-cyan-400/30 ring-1 ring-white/5
+  shadow-[0_0_40px_rgba(34,211,238,0.08)]
+  hover:shadow-[0_0_60px_rgba(34,211,238,0.18)]
+  transition-shadow p-8`}>
+      <h1 className="text-center text-2xl font-semibold mb-6 text-[#00C6FB]">Opprett en agent</h1>
       
       <InputBox
         value={agentName}
@@ -84,6 +90,10 @@ export default function CreateAgent() {
         {loading && <p className="mt-8 text-center">Oppretter {agentName}...</p>}
         {!loading && response && <p className="mt-4 text-center">{response}</p>}
       </div>
+    <img src="/pointingMaskot.png" alt="Pointing Tale" className="hidden md:block absolute left-full -translate-y-1/2
+             h-80 z-20
+             drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+             drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />
     </div>
     </main>
   );
