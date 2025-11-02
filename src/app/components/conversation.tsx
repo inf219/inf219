@@ -73,9 +73,24 @@ export function Conversation() {
             </div>
 
             <div className="flex flex-col items-center">
-                {conversation.status === 'disconnected' ? <p>Status: Ikke koblet til</p> : <p>Koblet til</p>}
-                {conversation.status === 'disconnected' ? null :
-                    <p>Agenten {conversation.isSpeaking ? 'snakker' : 'venter'}</p>}
+                {conversation.status === 'disconnected' ? (
+                    <p>Status: Ikke koblet til</p>
+                ) : (
+                    <div className="flex flex-col items-center gap-2">
+                        <p>Koblet til</p>
+                        {conversation.isSpeaking ? (
+                            <div className="flex items-center gap-2">
+                                <div className="w-16 h-16 bg-blue-500 rounded-full animate-pulse"></div>
+                                <p>Agenten snakker</p>
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <div className="w-16 h-16 bg-green-500 rounded-full animate-bounce"></div>
+                                <p>Din tur å snakke</p>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
