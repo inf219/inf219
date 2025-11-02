@@ -50,9 +50,10 @@ export default function CreateAgent() {
 
 
   return (
-    <main className={`flex flex-col justify-center items-center min-h-screen ${loading ? 'cursor-wait' : 'cursor-default'}`}>
+    <main className={`flex flex-col justify-center items-start min-h-screen ${loading ? 'cursor-wait' : 'cursor-default'}`}>
 
       <h1 className="text-2xl font-bold mb-4 items-center">Opprett en agent</h1>
+      
       <InputBox
         value={agentName}
         onChange={setAgentName}
@@ -66,7 +67,8 @@ export default function CreateAgent() {
       <InputBox
         value={aiPrompt}
         onChange={setPrompt}
-        placeHolder="Prompt..">
+        placeHolder={`Beskriv agentens personlighet og kunnskap \n\nEksempel: Du er en hjelpsom assistent som kan svare på spørsmål om historie.`}
+        size="large">
       </InputBox>
       <div
         onClick={handleCreate}
