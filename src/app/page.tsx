@@ -6,9 +6,9 @@ export default async function HomePage() {
 
   // Hvis innlogget, redirect basert på rolle
   if (session) {
-    if (session.user.role === "TEACHER") {
+    if (session.user.role === "TEACHER" || session.user.role === "ADMIN") {
       redirect("/home/teacher");
-    } else if (session.user.role === "STUDENT") {
+    } else if (session.user.role === "STUDENT" || session.user.role === "ADMIN") {
       redirect("/home/student");
     }
   }

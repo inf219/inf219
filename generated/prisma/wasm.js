@@ -107,7 +107,8 @@ exports.Prisma.NullsOrder = {
 };
 exports.Role = exports.$Enums.Role = {
   STUDENT: 'STUDENT',
-  TEACHER: 'TEACHER'
+  TEACHER: 'TEACHER',
+  ADMIN: 'ADMIN'
 };
 
 exports.Prisma.ModelName = {
@@ -124,7 +125,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/leosolheim/Documents/Skole/UiB/INF219/inf219-1/generated/prisma",
+      "value": "C:\\Users\\synne\\Documents\\dev\\inf219\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -133,12 +134,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/leosolheim/Documents/Skole/UiB/INF219/inf219-1/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\synne\\Documents\\dev\\inf219\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -152,7 +153,6 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -161,8 +161,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  STUDENT\n  TEACHER\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  role  Role\n}\n\n//model Post {\n//  id        Int     @id @default(autoincrement())\n//  title     String\n//  content   String?\n//  published Boolean @default(false)\n//  author    User    @relation(fields: [authorId], references: [id])\n//  authorId  Int\n//}\n",
-  "inlineSchemaHash": "6991b8e658aee1d749785719d5b3cd7c78e89ce9caba79fbdc03cf7e3e8ab6c8",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  STUDENT\n  TEACHER\n  ADMIN\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  role  Role\n}\n\n//model Post {\n//  id        Int     @id @default(autoincrement())\n//  title     String\n//  content   String?\n//  published Boolean @default(false)\n//  author    User    @relation(fields: [authorId], references: [id])\n//  authorId  Int\n//}\n",
+  "inlineSchemaHash": "b82398c47fc7c7de23261c3b443028726174dd7ed04ae52b2419940ff7a6f686",
   "copyEngine": true
 }
 config.dirname = '/'

@@ -12,9 +12,13 @@ export async function middleware(request: NextRequest) {
         console.log("Ingen session, omdirigerer til hjem");
         return NextResponse.redirect(new URL("/", request.url));
     }
-    
+
+    if (session.user.role === 'ADMIN') {
+        return NextResponse.next();
+    }
+
     // Sjekk lærer-sider
-    if (pathname.startsWith('/home/teacher') && session.user.role !== 'TEACHER') {
+    if (pathname.startsWith('/home/teacher') && (session.user.role !== 'TEACHER')) {
         console.log("Bruker er ikke lærer, omdirigerer til hjem");
         return NextResponse.redirect(new URL("/", request.url));
     }
@@ -29,19 +33,6 @@ export async function middleware(request: NextRequest) {
 
 }
 
-const handleTeacherAccess = (request: NextRequest, session: any) => {
-    if (session.user.role !== 'TEACHER') {
-        console.log("Bruker er ikke lærer, omdirigerer til hjem");
-        return NextResponse.redirect(new URL("/", request.url));
-    }
-}
-
-const handleStudentAccess = (request: NextRequest, session: any) => {
-    if (session.user.role !== 'STUDENT') {
-        console.log("Bruker er ikke student, omdirigerer til hjem");
-        return NextResponse.redirect(new URL("/", request.url));
-    }
-}
 
 //Hvilke ruter skal middleware kjøre på
 export const config = {
