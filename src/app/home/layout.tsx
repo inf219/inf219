@@ -22,7 +22,11 @@ export default async function Layout({
           alt="Fylkeskommunen logo"
           className="h-16 w-auto"
         />
-        <HamburgerMenu />
+        
+        <div className="flex items-center gap-4">
+          <BackButton />
+          <HamburgerMenu />
+        </div>
       </div>
 
       {/* Her får du innhold fra page.tsx */}
@@ -32,4 +36,3 @@ export default async function Layout({
     </div>
   );
 }
-
