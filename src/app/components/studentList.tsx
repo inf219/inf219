@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { PrismaClient } from "generated/prisma";
+import Link from "next/link";
 
 const prisma = new PrismaClient();
 
@@ -50,7 +51,13 @@ export async function StudentList() {
                 <p className="text-sm text-gray-600">{student.email}</p>
               </div>
 
-  
+              {/* Knapp som ruter til assign-siden for eleven */}
+              <Link
+                href={`/home/teacher/assign/${student.id}`}
+                className="p-5 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+              >
+                Tildel agent
+              </Link>
             </div>
           </li>
         ))}
