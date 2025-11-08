@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Card from './card';
 
 interface Agent {
     agent_id: string;
@@ -44,7 +45,7 @@ export function AgentList() {
     if (loading) {
         return (
             <div className="flex justify-center items-center min-h-64">
-                <p className="text-lg">Laster inn agenter...</p>
+                <p className="text-lg text-[var(--loading_color)]">Laster inn agenter...</p>
             </div>
         );
     }
@@ -52,34 +53,32 @@ export function AgentList() {
     if (error) {
         return (
             <div className="flex justify-center items-center min-h-64">
-                <p className="text-red-500 text-lg">Error: {error}</p>
+                <p className="text-red-500 text-lg text-[var(--loading_color)]">Error: {error}</p>
             </div>
         );
     }
 
     return (
         <div className="w-full max-w-3xl"> {/* Increased from max-w-2xl to max-w-3xl (approx 1792px) */}
-            <h2 className="text-2xl font-bold mb-4 text-center">Dine Elevenlabs agenter</h2>
             {agents.length === 0 ? (
-                <p className="text-center text-gray-500">Ingen agenter funnet.</p>
+                <p className="text-center text-[var(--loading_color)]">Ingen agenter funnet.</p>
             ) : (
                 <ul className="space-y-5">
                     {agents.map((agent) => (
-                        <li
+                        <Card
                             key={agent.agent_id}
-                            className="p-5 bg-gray-100 rounded-lg border border-blue-300 flex justify-between items-center w-full" 
-                        >
+                            className='!flex !justify-between'>
                             <div className='px-4'>
                                 <h3 className="font-semibold">{agent.name}</h3>
                                 <p className="text-sm text-gray-600">{agent.tags}</p>
                             </div>
                             <button
-                                onClick={() => router.push(`/agent/talk?agent_id=${agent.agent_id}`)}
-                                className="px-2 py-1 bg-green-500 text-white rounded"
-                            >
+                                onClick={() => router.push(`/home/global/talk?agent_id=${agent.agent_id}`)}
+                                className="px-2 py-1">
                                 Snakk med {agent.name}
                             </button>
-                        </li>
+                            
+                        </Card>
                     ))}
                 </ul>
             )}

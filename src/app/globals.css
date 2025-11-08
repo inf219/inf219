@@ -9,25 +9,82 @@ body {
   padding: 0;
 } 
 
+:root {
+  --background: #DFF2F6;
+  --header: #9ADBE8;
+  --loading_color: black;
+  --border_color: #4DA8BE;
+}
+
+/* Hoved overskrifter*/
+h1 {
+  font-size: 64px;
+  font-weight: 700;
+  color: #1A3A52;
+}
+/* Underoverskrifter */
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3D6A85;
+}
+
 body {
   /*display: flex;*/
   justify-content: center;       /*horizontal center */
   align-items: center;           /*vertical center */
-  background-color: #C9EDF7;   /*page background */
+  background: var(--background);  /*page background */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
   font-family: 'Roboto',sans-serif;
+}
+
+[data-theme="dark"] {
+  --background: linear-gradient(180deg, #0B132B 0%, #111C44 50%, #1A234D 80%);   /*page background */
+  --heading-primary: #00C6FB;
+  --heading-secondary: #CFEAFF;
+  --color-button: linear-gradient(180deg, #00C6FB 0%, #0096FF 100%);
+  --text-button: #fff;                          /* text color */
+  --border-button: 2px solid #2563EB;           /*button border */
+  --header-background: #0B132B;
+  --bg-box: white/6; /*backdrop-blur-lg backdrop-saturate-150
+  border border-cyan-400/30 ring-1 ring-white/5
+  shadow-[0_0_40px_rgba(34,211,238,0.08)]
+  hover:shadow-[0_0_60px_rgba(34,211,238,0.18)]
+  transition-shadow p-8`; */
 }
 
 
 button {
-  background-color: #9ADBE8;     /*button background */
-  color: black;                  /* text color */
-  border: none;
+  background: linear-gradient(180deg, #1A3A52 0%, #2C4F6B 100%);     /*button background */
+  color: #fff;                  /* text color */
+  border: 2px solid #0F2438;   /*button border */
   padding: 12px 12px;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 button:hover {
-  background-color: #6ECAD9;   /*button hover background */
+  transform: translateY(-1px) scale(1.03);
+
+  /* lysere gradient på hover */
+  background: linear-gradient(180deg, #2C4F6B 0%, #3D6A85 100%);
 }
+
+
+/* Dark theme button styles */
+/* button:hover {
+  transform: translateY(-1px) scale(1.03);
+
+  /* lysere gradient på hover */
+/*  background: linear-gradient(180deg, #19D2FF 0%, #0AA2FF 100%);
+} */
+

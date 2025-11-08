@@ -1,6 +1,9 @@
 'use client';
 
+import Card from "@/app/components/card";
+import InfoTooltip from "@/app/components/InfoTooltip";
 import InputBox from "@/app/components/inputBox";
+import { string } from "@elevenlabs/elevenlabs-js/core/schemas";
 import { useState } from "react";
 
 
@@ -11,6 +14,19 @@ export default function CreateAgent() {
   const [firstMessage, setFirstMessage] = useState('');
   const [aiPrompt, setPrompt] = useState('')
 
+const example = `Eksempel:
+Du er vennlig, engasjert og konkret. Snakk rolig, bruk korte og tydelige setninger.
+Vær oppmuntrende og bruk humor der det passer.
+Du bruker naturlig språk, uten faguttrykk som kan være vanskelig for en elev å forstå.
+
+Oppgaver du kan hjelpe med:
+* Øve på dagligdagse samtaler (For eksempel: på butikken, på skolen, med venner).
+* Forklar ord og uttrykk på en enkel måte.
+* Gi eksempler fra hverdagen for å gjøre ting lettere å forstå.
+* Gi små uttaleøvelser og hjelp eleven med å bygge setninger.
+* Snakk om temaer som interesserer eleven.`
+;
+  
 
   const handleCreate = async () => {
     setLoading(true);
@@ -50,10 +66,10 @@ export default function CreateAgent() {
 
 
   return (
-    <main className={`flex flex-col justify-center items-start min-h-screen ${loading ? 'cursor-wait' : 'cursor-default'}`}>
+    <main className={`flex flex-col items-center py-8 ${loading ? 'cursor-wait' : 'cursor-default'}`}>
 
-      <h1 className="text-2xl font-bold mb-4 items-center">Opprett en agent</h1>
-      
+    <Card>
+      <h1 className="text-center !text-4xl font-semibold mb-6">Opprett en agent</h1>
       <InputBox
         value={agentName}
         onChange={setAgentName}
@@ -64,21 +80,32 @@ export default function CreateAgent() {
         onChange={setFirstMessage}
         placeHolder="Hva skal agenten si først?">
       </InputBox>
+      <InfoTooltip text={example} />
       <InputBox
         value={aiPrompt}
         onChange={setPrompt}
         placeHolder={`Beskriv agentens personlighet og kunnskap \n\nEksempel: Du er en hjelpsom assistent som kan svare på spørsmål om historie.`}
         size="large">
       </InputBox>
-      <div
+      <button
         onClick={handleCreate}
-        className={`bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-xl w-fit flex items-center gap-2 hover:scale-105 transition duration-200 ${loading ? 'cursor-wait' : 'cursor-pointer'}`}>
+        className={`!w-full
+         !disabled:bg-sky-300 !disabled:cursor-not-allowed${loading ? ' cursor-wait' : ''}`}>
         <p>{loading ? '⏳ Laster...' : 'Opprett agent'}</p>
-      </div>
+      </button>
       <div>
-        {loading && <p className="mt-4">Oppdaterer {agentName} sin personlighet...</p>}
-        {!loading && response && <p className="mt-4">{response}</p>}
+        {loading && <p className="mt-8 text-center text-[var(--loading_color)]">Oppretter {agentName}...</p>}
+        {!loading && response && <p className="mt-4 text-center text-[var(--loading_color)]">{response}</p>}
       </div>
+    </Card>
+        <img src="/pointingMaskot.png" alt="Pointing Tale" 
+            className="w-54 relative z-10 
+              md:translate-x-90 md:-translate-y-60
+              drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+              drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />
     </main>
   );
 }
+
+
+

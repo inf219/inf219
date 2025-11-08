@@ -16,9 +16,7 @@ export default function LinkButton({href, children, className }: LinkButtonProps
     return (
         <button
         onClick={() => router.push(href)}
-        className={clsx(`py-2 px-4 rounded font-semibold shadow`,
-            className
-        )}
+        className={clsx(className)}
         >
             {children}
         </button>
