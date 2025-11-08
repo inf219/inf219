@@ -69,6 +69,11 @@ const config: NextAuthConfig = {
     FeideProvider as any ],
   secret: env.nextAuthSecret,
 
+  theme: {
+    colorScheme: "auto",
+    logo: "/maskot.png",
+  },
+
 
   //Setter id og role i JWT token og session (hentet fra brukerobjektet ved innlogging)
   callbacks: {
@@ -93,6 +98,7 @@ const config: NextAuthConfig = {
 
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 8, // 8 timer
   },
 
 } satisfies NextAuthConfig;

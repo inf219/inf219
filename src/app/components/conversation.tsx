@@ -50,7 +50,7 @@ export function Conversation() {
     }, [conversation]);
 
     if (!agent_id) {
-        return <p className="text-red-500">Ingen agent valgt. Gå tilbake til agentlisten.</p>;  // Optional: Error UI if no agent_id
+        return <p className="text-[#CFEAFF]">Ingen agent valgt. Gå tilbake til agentlisten.</p>;  // Optional: Error UI if no agent_id
     }
 
     return (
@@ -59,20 +59,20 @@ export function Conversation() {
                 <button
                     onClick={startConversation}
                     disabled={conversation.status === 'connected'}
-                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+                    className="px-4 py-2 disabled:bg-gray-300"
                 >
                     Start samtale
                 </button>
                 <button
                     onClick={stopConversation}
                     disabled={conversation.status !== 'connected'}
-                    className="px-4 py-2 bg-red-500 text-white rounded disabled:bg-gray-300"
+                    className="px-4 py-2 rounded disabled:bg-gray-300"
                 >
                     Avslutt samtale
                 </button>
             </div>
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-[var(--loading_color)]">
                 {conversation.status === 'disconnected' ? <p>Status: Ikke koblet til</p> : <p>Koblet til</p>}
                 {conversation.status === 'disconnected' ? null :
                     <p>Agenten {conversation.isSpeaking ? 'snakker' : 'venter'}</p>}

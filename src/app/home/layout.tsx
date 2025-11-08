@@ -13,10 +13,10 @@ export default async function Layout({
     <div className="min-h-screen w-full">
       {/* TopBar */}
       <div
-        className="sticky top-0 z-50 w-full shadow-2xl px-6 py-4 flex items-center justify-between bg-[#0B132B]"
+        className="sticky z-50 shadow-2xl px-6 py-4 flex items-center justify-between bg-[var(--header)]"
       >
         <img
-          src="/sidestilt-logo-kvit-skrift-vlfk.png"
+          src="/sidestilt-logo-vlfk.png"
           alt="Fylkeskommunen logo"
           className="h-16 w-auto"
         />
@@ -24,7 +24,7 @@ export default async function Layout({
       </div>
 
       {/* Her får du innhold fra page.tsx */}
-      <main className="flex flex-col items-center p-4">
+      <main className="flex flex-col items-center">
         {children}
       </main>
     </div>

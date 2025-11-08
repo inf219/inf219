@@ -17,8 +17,8 @@ export default async function HomePage() {
   // Hvis ikke innlogget, vis login
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-8xl font-bold mb-4 text-[#00C6FB]">Velkommen</h1>
-      <h2 className="text-xl font-bold mb-4 text-[#CFEAFF]">Tale - Din digitale læringsassistent</h2>
+      <h1 className="mb-2">Velkommen</h1>
+      <h2 className="mb-4">Tale - Din digitale læringsassistent</h2>
       <img
         src="/maskot1.png"
         alt="Tale Maskot"
@@ -28,7 +28,7 @@ export default async function HomePage() {
 
       <LinkButton 
         href="/api/auth/signin?callbackUrl=/"
-        className="sm:w-auto !px-8 !py-4 !rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+        className="!px-8 !py-4"
       >
         Logg inn
       </LinkButton>
