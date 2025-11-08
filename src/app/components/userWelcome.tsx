@@ -10,14 +10,15 @@ interface Props {
 export default function UserWelcome({ name, role }: Props) {
   return (
     <div
-      className="mt-20 border-2 shadow-xl rounded-full p-20 h-64"
-      style={{ borderColor: "#00C6FB" }}
+      className="mt-20 border-2 shadow-xl rounded-full p-20 h-64 
+      border-[var(--border_color)] bg-[var(--header)] 
+      flex flex-col items-center justify-center"
     >
-      <h1 className="text-6xl font-medium text-center text-white text-[#00C6FB]">
+      <h1>
         Velkommen, {name ?? "bruker"}
       </h1>
       {role && (
-        <h2 className="mt-4 text-xl font-medium text-center text-gray-500">
+        <h2>
           #{role}
         </h2>
       )}

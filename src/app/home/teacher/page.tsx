@@ -9,9 +9,9 @@ export default async function HomePage() {
 
   return (
     <>
-
       <UserWelcome name={session?.user?.name} role="Lærer"></UserWelcome>
-      <div className="mt-20">
+      
+      <div className="mt-18">
         <LinkButton
           href="/home/teacher/create"
           className="mb-2 me-2 py-4 px-8"
@@ -24,23 +24,21 @@ export default async function HomePage() {
         >
           Se dine agenter
         </LinkButton>
-
         <LinkButton
           href="/home/teacher/students"
-          className="!text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l 
-          focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 
-          font-medium rounded-lg text-sm px-8 py-4 text-center me-2 mb-2 hover:scale-105 transition duration-200"
+          className="mb-2 ms-2 py-4 px-8"
         >
           Se alle elever
         </LinkButton>
-      </div>
-      <img
+        <img
         src="/wavingmaskot.png"
         alt="Tale Maskot"
-        className="w-54 relative self-end mt-1 z-10
-             drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
-             drop-shadow-[0_0_36px_rgba(14,165,233,0.25)] "
+        className="w-54 relative z-10 
+            md:translate-x-18 md:translate-y-6
+            drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+            drop-shadow-[0_0_36px_rgba(14,165,233,0.25)] "
       />
+      </div>
     </>
   );
 }

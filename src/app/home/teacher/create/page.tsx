@@ -1,6 +1,9 @@
 'use client';
 
+import Card from "@/app/components/card";
+import InfoTooltip from "@/app/components/InfoTooltip";
 import InputBox from "@/app/components/inputBox";
+import { string } from "@elevenlabs/elevenlabs-js/core/schemas";
 import { useState } from "react";
 
 
@@ -11,6 +14,19 @@ export default function CreateAgent() {
   const [firstMessage, setFirstMessage] = useState('');
   const [aiPrompt, setPrompt] = useState('')
 
+const example = `Eksempel:
+Du er vennlig, engasjert og konkret. Snakk rolig, bruk korte og tydelige setninger.
+Vær oppmuntrende og bruk humor der det passer.
+Du bruker naturlig språk, uten faguttrykk som kan være vanskelig for en elev å forstå.
+
+Oppgaver du kan hjelpe med:
+* Øve på dagligdagse samtaler (For eksempel: på butikken, på skolen, med venner).
+* Forklar ord og uttrykk på en enkel måte.
+* Gi eksempler fra hverdagen for å gjøre ting lettere å forstå.
+* Gi små uttaleøvelser og hjelp eleven med å bygge setninger.
+* Snakk om temaer som interesserer eleven.`
+;
+  
 
   const handleCreate = async () => {
     setLoading(true);
@@ -50,17 +66,10 @@ export default function CreateAgent() {
 
 
   return (
-    <main className={`flex flex-col items-center py-22 ${loading ? 'cursor-wait' : 'cursor-default'}`}>
+    <main className={`flex flex-col items-center py-8 ${loading ? 'cursor-wait' : 'cursor-default'}`}>
 
-    <div className={`relative inline-block overflow-visible
-  max-w-xl w-full mx-auto rounded-2xl
-  bg-white/6 backdrop-blur-lg backdrop-saturate-150
-  border border-cyan-400/30 ring-1 ring-white/5
-  shadow-[0_0_40px_rgba(34,211,238,0.08)]
-  hover:shadow-[0_0_60px_rgba(34,211,238,0.18)]
-  transition-shadow p-8`}>
-      <h1 className="text-center text-2xl font-semibold mb-6 text-[#00C6FB]">Opprett en agent</h1>
-      
+    <Card>
+      <h1 className="text-center !text-4xl font-semibold mb-6">Opprett en agent</h1>
       <InputBox
         value={agentName}
         onChange={setAgentName}
@@ -71,6 +80,7 @@ export default function CreateAgent() {
         onChange={setFirstMessage}
         placeHolder="Hva skal agenten si først?">
       </InputBox>
+      <InfoTooltip text={example} />
       <InputBox
         value={aiPrompt}
         onChange={setPrompt}
@@ -79,22 +89,20 @@ export default function CreateAgent() {
       </InputBox>
       <button
         onClick={handleCreate}
-        className={`!w-full !sm:w-auto !inline-flex !items-center !justify-center !rounded-lg
-         !px-4 !py-2.5 !font-medium !shadow-sm !transition
-         !hover:bg-sky-700 !active:bg-sky-800
-         !focus:outline-none !focus:ring-2 !focus:ring-sky-500 !focus:ring-offset-2
+        className={`!w-full
          !disabled:bg-sky-300 !disabled:cursor-not-allowed${loading ? ' cursor-wait' : ''}`}>
         <p>{loading ? '⏳ Laster...' : 'Opprett agent'}</p>
       </button>
       <div>
-        {loading && <p className="mt-8 text-center">Oppretter {agentName}...</p>}
-        {!loading && response && <p className="mt-4 text-center">{response}</p>}
+        {loading && <p className="mt-8 text-center text-[var(--loading_color)]">Oppretter {agentName}...</p>}
+        {!loading && response && <p className="mt-4 text-center text-[var(--loading_color)]">{response}</p>}
       </div>
-    <img src="/pointingMaskot.png" alt="Pointing Tale" className="hidden md:block absolute left-full -translate-y-1/2
-             h-80 z-20
-             drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
-             drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />
-    </div>
+    </Card>
+        <img src="/pointingMaskot.png" alt="Pointing Tale" 
+            className="w-54 relative z-10 
+              md:translate-x-90 md:-translate-y-60
+              drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+              drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />
     </main>
   );
 }
