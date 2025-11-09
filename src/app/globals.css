@@ -20,7 +20,7 @@ body {
 h1 {
   font-size: 64px;
   font-weight: 700;
-  color: #1A3A52;
+  color: #1A3F95;
 }
 /* Underoverskrifter */
 h2 {
@@ -57,7 +57,7 @@ body {
 
 
 button {
-  background: linear-gradient(180deg, #1A3A52 0%, #2C4F6B 100%);     /*button background */
+  background: linear-gradient(180deg, #1A3F95 0%, #11224D 100%);  /*button background */
   color: #fff;                  /* text color */
   border: 2px solid #0F2438;   /*button border */
   padding: 12px 12px;
@@ -76,7 +76,7 @@ button:hover {
   transform: translateY(-1px) scale(1.03);
 
   /* lysere gradient på hover */
-  background: linear-gradient(180deg, #2C4F6B 0%, #3D6A85 100%);
+  background: linear-gradient(180deg, #1E4DB7 0%, #172E6E 100%);
 }
 
 

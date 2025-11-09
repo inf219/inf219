@@ -96,6 +96,20 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.AgentsScalarFieldEnum = {
+  id: 'id',
+  agent_id: 'agent_id',
+  created_by: 'created_by',
+  is_public: 'is_public'
+};
+
+exports.Prisma.StudentAgentAssignmentScalarFieldEnum = {
+  id: 'id',
+  agent_id: 'agent_id',
+  student_id: 'student_id',
+  assigned_by: 'assigned_by'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -112,7 +126,9 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Agents: 'Agents',
+  StudentAgentAssignment: 'StudentAgentAssignment'
 };
 /**
  * Create the Client
@@ -125,7 +141,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\synne\\Documents\\dev\\inf219\\generated\\prisma",
+      "value": "C:\\Users\\synne\\Documents\\dev\\Tale\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -139,7 +155,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\synne\\Documents\\dev\\inf219\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\synne\\Documents\\dev\\Tale\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -153,6 +169,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -161,13 +178,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  STUDENT\n  TEACHER\n  ADMIN\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  role  Role\n}\n\n//model Post {\n//  id        Int     @id @default(autoincrement())\n//  title     String\n//  content   String?\n//  published Boolean @default(false)\n//  author    User    @relation(fields: [authorId], references: [id])\n//  authorId  Int\n//}\n",
-  "inlineSchemaHash": "b82398c47fc7c7de23261c3b443028726174dd7ed04ae52b2419940ff7a6f686",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  STUDENT\n  TEACHER\n  ADMIN\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  role  Role\n\n  //Relasjoner:\n  createdAgents     Agents[]                 @relation(\"Creator\")\n  assignedStudents  StudentAgentAssignment[] @relation(\"Student\")\n  assignedByTeacher StudentAgentAssignment[] @relation(\"Assigned_by\")\n}\n\nmodel Agents {\n  id         Int     @id @default(autoincrement())\n  agent_id   String  @unique\n  created_by Int\n  is_public  Boolean @default(false)\n\n  //Definerer foreign key:\n  creator            User                     @relation(\"Creator\", fields: [created_by], references: [id])\n  studentAssignments StudentAgentAssignment[] @relation(\"Agent\")\n}\n\nmodel StudentAgentAssignment {\n  id          Int @id @default(autoincrement())\n  agent_id    Int\n  student_id  Int\n  assigned_by Int\n\n  //Relasjoner:\n  agent   Agents @relation(\"Agent\", fields: [agent_id], references: [id])\n  student User   @relation(\"Student\", fields: [student_id], references: [id])\n  teacher User   @relation(\"Assigned_by\", fields: [assigned_by], references: [id])\n\n  @@unique([agent_id, student_id])\n}\n\n//Dersom lærere også skal ha restriksjoner på hvilke agenter de har tilgang til. Opprett en TeacherAgentAssignment\n//Lik som StudentAgentAssignment\n",
+  "inlineSchemaHash": "262c8bdbf7a53a279b64af067d194326cd8fd35f1fb83bf893a42620ab30c50c",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAgents\",\"kind\":\"object\",\"type\":\"Agents\",\"relationName\":\"Creator\"},{\"name\":\"assignedStudents\",\"kind\":\"object\",\"type\":\"StudentAgentAssignment\",\"relationName\":\"Student\"},{\"name\":\"assignedByTeacher\",\"kind\":\"object\",\"type\":\"StudentAgentAssignment\",\"relationName\":\"Assigned_by\"}],\"dbName\":null},\"Agents\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"agent_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_by\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_public\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"creator\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Creator\"},{\"name\":\"studentAssignments\",\"kind\":\"object\",\"type\":\"StudentAgentAssignment\",\"relationName\":\"Agent\"}],\"dbName\":null},\"StudentAgentAssignment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"agent_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"student_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"assigned_by\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"agent\",\"kind\":\"object\",\"type\":\"Agents\",\"relationName\":\"Agent\"},{\"name\":\"student\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Student\"},{\"name\":\"teacher\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Assigned_by\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

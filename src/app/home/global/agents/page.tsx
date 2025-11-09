@@ -9,7 +9,7 @@ export default function AgentsPage() {
                 </h1>
                 <AgentList />
             </div>
-                <img src="/agentmaskot.png" alt="Pointing Tale" 
+                <img src="/snakkeMaskot.png" alt="Pointing Tale" 
                 className="hiddenmd:block absolute -right-50 top-90 -translate-y-1/2 h-80
                 drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
                 drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />

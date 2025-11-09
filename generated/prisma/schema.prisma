@@ -22,13 +22,37 @@ model User {
   email String  @unique
   name  String?
   role  Role
+
+  //Relasjoner:
+  createdAgents     Agents[]                 @relation("Creator")
+  assignedStudents  StudentAgentAssignment[] @relation("Student")
+  assignedByTeacher StudentAgentAssignment[] @relation("Assigned_by")
 }
 
-//model Post {
-//  id        Int     @id @default(autoincrement())
-//  title     String
-//  content   String?
-//  published Boolean @default(false)
-//  author    User    @relation(fields: [authorId], references: [id])
-//  authorId  Int
-//}
+model Agents {
+  id         Int     @id @default(autoincrement())
+  agent_id   String  @unique
+  created_by Int
+  is_public  Boolean @default(false)
+
+  //Definerer foreign key:
+  creator            User                     @relation("Creator", fields: [created_by], references: [id])
+  studentAssignments StudentAgentAssignment[] @relation("Agent")
+}
+
+model StudentAgentAssignment {
+  id          Int @id @default(autoincrement())
+  agent_id    Int
+  student_id  Int
+  assigned_by Int
+
+  //Relasjoner:
+  agent   Agents @relation("Agent", fields: [agent_id], references: [id])
+  student User   @relation("Student", fields: [student_id], references: [id])
+  teacher User   @relation("Assigned_by", fields: [assigned_by], references: [id])
+
+  @@unique([agent_id, student_id])
+}
+
+//Dersom lærere også skal ha restriksjoner på hvilke agenter de har tilgang til. Opprett en TeacherAgentAssignment
+//Lik som StudentAgentAssignment

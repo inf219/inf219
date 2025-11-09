@@ -124,6 +124,20 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.AgentsScalarFieldEnum = {
+  id: 'id',
+  agent_id: 'agent_id',
+  created_by: 'created_by',
+  is_public: 'is_public'
+};
+
+exports.Prisma.StudentAgentAssignmentScalarFieldEnum = {
+  id: 'id',
+  agent_id: 'agent_id',
+  student_id: 'student_id',
+  assigned_by: 'assigned_by'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,7 +154,9 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Agents: 'Agents',
+  StudentAgentAssignment: 'StudentAgentAssignment'
 };
 
 /**

@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@elevenlabs/elevenlabs-js": "^2.15.0",
     "@elevenlabs/react": "^0.6.2",
     "@prisma/client": "^6.17.1",
