@@ -13,7 +13,7 @@ function InfoTooltip({ text, size = 20 }: InfoTooltipProps) {
   return (
     <div className="float-right relative inline-block">
       <div
-        className="flex items-center justify-center ml-auto rounded-full bg-[#2C4F6B] text-white transition-colors hover:bg-blue-700 mb-4"
+        className="flex items-center justify-center ml-auto rounded-full bg-[var(--main_heading)] text-white transition-colors hover:bg-blue-700 mb-4"
         style={{ width: `${size}px`, height: `${size}px` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
