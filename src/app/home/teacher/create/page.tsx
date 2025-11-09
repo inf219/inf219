@@ -3,7 +3,6 @@
 import Card from "@/app/components/card";
 import InfoTooltip from "@/app/components/InfoTooltip";
 import InputBox from "@/app/components/inputBox";
-import { string } from "@elevenlabs/elevenlabs-js/core/schemas";
 import { useState } from "react";
 
 

@@ -1,4 +1,10 @@
+export const runtime = 'nodejs';
 import { NextRequest, NextResponse } from "next/server";
+// import { agentService } from "@/lib/services/agentService";
+// import { userService } from "@/lib/services/userService";
+
+// const agentService = new AgentService();
+// const userService = new UserService();
 
 export async function POST(req: NextRequest) {
     const body = await req.json();

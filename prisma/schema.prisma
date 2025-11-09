@@ -34,6 +34,7 @@ model Agents {
   agent_id String       @unique
   created_by Int 
   is_public Boolean     @default(false)
+  name      String    
 
   //Definerer foreign key:
   creator               User                          @relation("Creator", fields: [created_by], references: [id]) 
