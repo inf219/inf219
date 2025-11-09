@@ -22,6 +22,19 @@ model User {
   email String  @unique
   name  String?
   role  Role
+
+  assignments StudentAgentAssignment[]
+}
+
+model StudentAgentAssignment {
+  id         Int      @id @default(autoincrement())
+  studentId  Int
+  agentId    String
+  assignedAt DateTime @default(now())
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, agentId]) // Prevents duplicate assignments
 }
 
 //model Post {

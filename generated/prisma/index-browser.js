@@ -124,6 +124,13 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.StudentAgentAssignmentScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  agentId: 'agentId',
+  assignedAt: 'assignedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,7 +147,8 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  StudentAgentAssignment: 'StudentAgentAssignment'
 };
 
 /**
