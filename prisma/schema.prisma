@@ -33,7 +33,6 @@ model Agents {
   id Int                @id @default(autoincrement())
   agent_id String       @unique
   created_by Int 
-  is_public Boolean     @default(false)
   name      String    
 
   //Definerer foreign key:

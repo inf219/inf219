@@ -4,6 +4,7 @@ import Card from "@/app/components/card";
 import InfoTooltip from "@/app/components/InfoTooltip";
 import InputBox from "@/app/components/inputBox";
 import { useState } from "react";
+import { CreateAgentDto } from "@/lib/dto/agentDto";
 
 
 export default function CreateAgent() {
@@ -12,6 +13,7 @@ export default function CreateAgent() {
   const [agentName, setAgentName] = useState('');
   const [firstMessage, setFirstMessage] = useState('');
   const [aiPrompt, setPrompt] = useState('')
+
 
 const example = `Eksempel:
 Du er vennlig, engasjert og konkret. Snakk rolig, bruk korte og tydelige setninger.
@@ -29,41 +31,45 @@ Oppgaver du kan hjelpe med:
 
   const handleCreate = async () => {
     setLoading(true);
-    const res = await fetch('/api/agents', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        conversation_config: {
-          tts: {
-            model_id: 'eleven_turbo_v2_5',
-            voice_id: 'CMVyxPycEkgLpEF85ShA',
-          },
-          agent: {
-            first_message: firstMessage,
-            language: 'no',
-            prompt: {
-              prompt: aiPrompt,
-            },
-            llm: {
-              model: 'turbo_v2_5',
-            },
-          },
-        },
-        name: agentName,
-        tags: ['test', 'norsk'],
-      }),
-    });
+    setResponse(null);
 
-    const data = await res.json();
-    if (res.ok) {
-      setResponse(`Agent med navn "${agentName}" er opprettet`);
-    } else {
-      setResponse(`Feil: ${data.error}`);
+    const body: CreateAgentDto = {
+      name: agentName,
+      tags: ['test', 'norsk'],
+      conversation_config: {
+        tts: {
+          model_id: 'eleven_turbo_v2_5',
+          voice_id: 'CMVyxPycEkgLpEF85ShA',
+        },
+        agent: {
+          first_message: firstMessage,
+          language: 'no',
+          prompt: { prompt: aiPrompt },
+          llm: { model: 'turbo_v2_5' },
+        },
+      },
+    };
+
+    try {
+      const res = await fetch('/api/agents', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setResponse(`Agent "${data.agent.name}" opprettet`);
+      } else {
+        setResponse(`Feil: ${data.error}`);
+      }
+    } catch (error: any) {
+      setResponse(`Feil ved oppretting av agent: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
-
+  
   return (
     <main className={`flex flex-col items-center py-8 ${loading ? 'cursor-wait' : 'cursor-default'}`}>
 
@@ -89,7 +95,7 @@ Oppgaver du kan hjelpe med:
       <button
         onClick={handleCreate}
         className={`!w-full
-         !disabled:bg-sky-300 !disabled:cursor-not-allowed${loading ? ' cursor-wait' : ''}`}>
+          !disabled:bg-sky-300 !disabled:cursor-not-allowed${loading ? ' cursor-wait' : ''}`}>
         <p>{loading ? '⏳ Laster...' : 'Opprett agent'}</p>
       </button>
       <div>
@@ -99,12 +105,37 @@ Oppgaver du kan hjelpe med:
     </Card>
         <img src="/pointingMaskot.png" alt="Pointing Tale" 
             className="w-54 relative z-10 
-              md:translate-x-90 md:-translate-y-60
-              drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
-              drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />
+            md:translate-x-90 md:-translate-y-60
+            drop-shadow-[0_0_16px_rgba(14,165,233,0.55)]
+            drop-shadow-[0_0_36px_rgba(14,165,233,0.25)]" />
     </main>
   );
 }
 
 
 
+
+// const res = await fetch('/api/agents', {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify({
+//     conversation_config: {
+//       tts: {
+//         model_id: 'eleven_turbo_v2_5',
+//         voice_id: 'CMVyxPycEkgLpEF85ShA',
+//       },
+//       agent: {
+//         first_message: firstMessage,
+//         language: 'no',
+//         prompt: {
+//           prompt: aiPrompt,
+//         },
+//         llm: {
+//           model: 'turbo_v2_5',
+//         },
+//       },
+//     },
+//     name: agentName,
+//     tags: ['test', 'norsk'],
+//   }),
+// });

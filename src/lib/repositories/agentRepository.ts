@@ -3,16 +3,15 @@ import {prisma} from "@/lib/prisma";
 
 export class AgentRepository {
     
-    async addAgent(agent_id: string, 
+    async addAgent(
+        agent_id: string, 
         created_by: number, 
-        name: string, 
-        is_public?: boolean) {
+        name: string,) {
             return await prisma.agents.create({
                 data: {
                     agent_id,
                     created_by,
                     name,
-                    is_public
                 }
             });
     }
