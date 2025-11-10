@@ -27,6 +27,11 @@ export class AgentRepository {
         });
     }
     
+    async findByStudentId(student_id: number) {
+        return await prisma.agents.findMany({
+            where: {student_id},
+        });
+    }
     
     
 }

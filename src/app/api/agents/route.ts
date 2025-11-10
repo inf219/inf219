@@ -4,12 +4,12 @@ import { AgentService } from "@/lib/services/agentService";
 import { CreateAgentDto } from "@/lib/dto/agentDto";
 import { UserService } from "@/lib/services/userService";
 import { auth } from "@/auth";
-import { user } from "@elevenlabs/elevenlabs-js/api";
-
 
 const agentService = new AgentService();
 const userService = new UserService();
 
+//API route for å opprette en agent! Kalles i frontend (page), med body, konverteres til CreateAgentDto.
+//Sendes videre til AgentService som håndterer kall til ElevenLabs og database.
 export async function POST(req: NextRequest) {
     try {
         const session = await auth();
@@ -31,14 +31,15 @@ export async function POST(req: NextRequest) {
         //Hent body fra request og parse til CreateAgentDto
         const body: CreateAgentDto = await req.json();
 
-        // STEG 4: Valider input (Her må vi kanskje legge til flere felt/endre)
+        //Valider input (Her må vi kanskje legge til flere felt/endre)
         if (!body.name || !body.conversation_config) {
             return NextResponse.json(
             { error: "Missing required fields" },
             { status: 400 }
         );
         }
-        //kall service for å faktisk opprette agenten
+
+        //kall service for å faktisk opprette agenten (lagrer også i databasen)
         const createdAgent = await agentService.createAgent(
             body, user.id
         );
@@ -56,4 +57,27 @@ export async function POST(req: NextRequest) {
             { status: 500 });
     }
 
+}
+    
+export async function GET() {
+        try {
+            const session = await auth();
+            if (!session?.user?.email) {
+                return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            }
+
+            const user = await userService.getUserByEmail(session.user.email);
+
+            if (!user) {
+                return NextResponse.json({ error: "User not found" }, { status: 404 });
+            }
+
+            const agents = await agentService.getAgentsForUser(user.id, user.role);
+
+            return NextResponse.json({ agents }, { status: 200 });
+
+        } catch (error: any) {
+            console.error("Error in getting agents:", error);
+            return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
+        }
 }
