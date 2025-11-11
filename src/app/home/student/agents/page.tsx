@@ -1,6 +1,8 @@
 
+import Card from "@/app/components/card";
 import { auth } from "@/auth";
 import { PrismaClient } from "generated/prisma";
+import Link from "next/link";
 
 const prisma = new PrismaClient();
 export default async function StudentAgentsPage() {
@@ -41,15 +43,30 @@ export default async function StudentAgentsPage() {
       {error && <p className="text-red-600">{error}</p>}
 
       {assignments.length === 0 ? (
-        <p>Ingen data i databasen ennå.</p>
+        <p className="text-center text-gray-600">Ingen data i databasen ennå.</p>
       ) : (
-        <div className="space-y-3">
-          {assignments.map((a) => (
-            <div key={a.id} className="p-4 bg-blue-50 rounded">
-              <p><strong>Student:</strong> {a.student.name} (ID: {a.studentId})</p>
-              <p><strong>Agent ID:</strong> {a.agentId}</p>
-            </div>
-          ))}
+        <div className="space-y-6">
+          {assignments.map((a) => {
+            // Hent agent-navn fra databasen eller fallback
+            const agentName = a.agentId.split("_").pop()?.replace(/-/g, " ") || "Ukjent agent";
+            const displayName = agentName.charAt(0).toUpperCase() + agentName.slice(1);
+
+            return (
+              <Card key={a.id} className="!flex !justify-between items-center p-4">
+                <div>
+                  <h3 className="font-semibold text-lg">{displayName}</h3>
+                  <p className="text-sm text-gray-600">testnorsk</p>
+                </div>
+
+                <Link
+                  href={`/home/global/talk?agent_id=${a.agentId}`}
+                  className="px-6 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition"
+                >
+                  Snakk med {displayName}
+                </Link>
+              </Card>
+            );
+          })}
         </div>
       )}
     </main>
