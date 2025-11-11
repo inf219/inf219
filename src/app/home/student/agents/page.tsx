@@ -1,16 +1,37 @@
-// src/app/home/student/agents/page.tsx
-export default async function StudentAgentsPage() {
-  let assignments: any[] = [];
-  let error = null;
 
-  try {
-    const res = await fetch("http://localhost:3000/api/student-agents", {
-      cache: "no-store"
-    });
-    const data = await res.json();
-    assignments = data.assignments;
-  } catch {
-    error = "Kunne ikke hente fra DB";
+import { auth } from "@/auth";
+import { PrismaClient } from "generated/prisma";
+
+const prisma = new PrismaClient();
+export default async function StudentAgentsPage() {
+  const session = await auth();
+  let assignments: any[] = [];
+  let error: string | null = null;
+
+  if (!session?.user?.id) {
+    error = "Ikke logget inn";
+  } else {
+    const studentId = Number(session.user.id);
+    if (isNaN(studentId)) {
+      error = "Ugyldig student-ID";
+    } else {
+      try {
+        assignments = await prisma.studentAgentAssignment.findMany({
+          where: { studentId },
+          select: {
+            id: true,
+            studentId: true,
+            agentId: true,
+            student: {
+              select: { id: true, name: true, email: true },
+            },
+          },
+        });
+      } catch (err) {
+        error = "Databasefeil";
+        console.error(err);
+      }
+    }
   }
 
   return (
