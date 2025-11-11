@@ -1,9 +1,7 @@
-import { env } from "./env";
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials"; //Brukes bare til mock-login
 import { PrismaClient } from "../generated/prisma";
-import type { JWT } from "next-auth/jwt";
-import type { Session } from "next-auth";
+import { env } from "./env";
 
 
 
@@ -27,9 +25,9 @@ const MockProvider = Credentials({
     if (!username || !password) return null;
 
     //Sjekk i databasen om brukeren finnes (Sjekkes nå på navn direkte!)
-     const user = await prisma.user.findFirst({
-       where: { name: String(username) },
-     });
+    const user = await prisma.user.findFirst({
+      where: { name: String(username) },
+    });
 
     // //Hvis brukeren ikke finnes, returner null (innlogging feiler)
     if (!user) return null;
@@ -65,8 +63,8 @@ const FeideProvider = {
 
 const config: NextAuthConfig = {
   providers: [
-    MockProvider, 
-    FeideProvider as any ],
+    MockProvider,
+    FeideProvider as any],
   secret: env.nextAuthSecret,
 
   theme: {
@@ -79,9 +77,9 @@ const config: NextAuthConfig = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-          token.id = (user as any).id;
-          token.role = (user as any).role;
-        }
+        token.id = (user as any).id;
+        token.role = (user as any).role;
+      }
 
       return token;
     },

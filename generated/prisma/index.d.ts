@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model StudentAgentAssignment
+ * 
+ */
+export type StudentAgentAssignment = $Result.DefaultSelection<Prisma.$StudentAgentAssignmentPayload>
 
 /**
  * Enums
@@ -164,6 +169,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.studentAgentAssignment`: Exposes CRUD operations for the **StudentAgentAssignment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StudentAgentAssignments
+    * const studentAgentAssignments = await prisma.studentAgentAssignment.findMany()
+    * ```
+    */
+  get studentAgentAssignment(): Prisma.StudentAgentAssignmentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -222,8 +237,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.17.1
-   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+   * Prisma Client JS version: 6.18.0
+   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
    */
   export type PrismaVersion = {
     client: string
@@ -236,6 +251,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -604,7 +620,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    StudentAgentAssignment: 'StudentAgentAssignment'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -623,7 +640,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "studentAgentAssignment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -698,6 +715,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      StudentAgentAssignment: {
+        payload: Prisma.$StudentAgentAssignmentPayload<ExtArgs>
+        fields: Prisma.StudentAgentAssignmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StudentAgentAssignmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StudentAgentAssignmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>
+          }
+          findFirst: {
+            args: Prisma.StudentAgentAssignmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StudentAgentAssignmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>
+          }
+          findMany: {
+            args: Prisma.StudentAgentAssignmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>[]
+          }
+          create: {
+            args: Prisma.StudentAgentAssignmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>
+          }
+          createMany: {
+            args: Prisma.StudentAgentAssignmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StudentAgentAssignmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>[]
+          }
+          delete: {
+            args: Prisma.StudentAgentAssignmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>
+          }
+          update: {
+            args: Prisma.StudentAgentAssignmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.StudentAgentAssignmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StudentAgentAssignmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StudentAgentAssignmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.StudentAgentAssignmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentAgentAssignmentPayload>
+          }
+          aggregate: {
+            args: Prisma.StudentAgentAssignmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudentAgentAssignment>
+          }
+          groupBy: {
+            args: Prisma.StudentAgentAssignmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StudentAgentAssignmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StudentAgentAssignmentCountArgs<ExtArgs>
+            result: $Utils.Optional<StudentAgentAssignmentCountAggregateOutputType> | number
           }
         }
       }
@@ -798,6 +889,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    studentAgentAssignment?: StudentAgentAssignmentOmit
   }
 
   /* Types for Logging */
@@ -872,6 +964,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    assignments: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | UserCountOutputTypeCountAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentAgentAssignmentWhereInput
+  }
 
 
   /**
@@ -1068,6 +1190,8 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     role?: boolean
+    assignments?: boolean | User$assignmentsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1092,10 +1216,18 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "role", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | User$assignmentsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      assignments: Prisma.$StudentAgentAssignmentPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       email: string
@@ -1495,6 +1627,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    assignments<T extends User$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1545,6 +1678,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1563,6 +1700,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1580,6 +1721,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1629,6 +1774,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1677,6 +1826,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1719,6 +1872,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1765,6 +1922,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1832,6 +1993,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1858,6 +2023,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1878,6 +2047,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.assignments
+   */
+  export type User$assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    where?: StudentAgentAssignmentWhereInput
+    orderBy?: StudentAgentAssignmentOrderByWithRelationInput | StudentAgentAssignmentOrderByWithRelationInput[]
+    cursor?: StudentAgentAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentAgentAssignmentScalarFieldEnum | StudentAgentAssignmentScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1889,6 +2082,1104 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StudentAgentAssignment
+   */
+
+  export type AggregateStudentAgentAssignment = {
+    _count: StudentAgentAssignmentCountAggregateOutputType | null
+    _avg: StudentAgentAssignmentAvgAggregateOutputType | null
+    _sum: StudentAgentAssignmentSumAggregateOutputType | null
+    _min: StudentAgentAssignmentMinAggregateOutputType | null
+    _max: StudentAgentAssignmentMaxAggregateOutputType | null
+  }
+
+  export type StudentAgentAssignmentAvgAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+  }
+
+  export type StudentAgentAssignmentSumAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+  }
+
+  export type StudentAgentAssignmentMinAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    agentId: string | null
+    agentName: string | null
+    assignedAt: Date | null
+  }
+
+  export type StudentAgentAssignmentMaxAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    agentId: string | null
+    agentName: string | null
+    assignedAt: Date | null
+  }
+
+  export type StudentAgentAssignmentCountAggregateOutputType = {
+    id: number
+    studentId: number
+    agentId: number
+    agentName: number
+    assignedAt: number
+    _all: number
+  }
+
+
+  export type StudentAgentAssignmentAvgAggregateInputType = {
+    id?: true
+    studentId?: true
+  }
+
+  export type StudentAgentAssignmentSumAggregateInputType = {
+    id?: true
+    studentId?: true
+  }
+
+  export type StudentAgentAssignmentMinAggregateInputType = {
+    id?: true
+    studentId?: true
+    agentId?: true
+    agentName?: true
+    assignedAt?: true
+  }
+
+  export type StudentAgentAssignmentMaxAggregateInputType = {
+    id?: true
+    studentId?: true
+    agentId?: true
+    agentName?: true
+    assignedAt?: true
+  }
+
+  export type StudentAgentAssignmentCountAggregateInputType = {
+    id?: true
+    studentId?: true
+    agentId?: true
+    agentName?: true
+    assignedAt?: true
+    _all?: true
+  }
+
+  export type StudentAgentAssignmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentAgentAssignment to aggregate.
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentAgentAssignments to fetch.
+     */
+    orderBy?: StudentAgentAssignmentOrderByWithRelationInput | StudentAgentAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StudentAgentAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentAgentAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentAgentAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StudentAgentAssignments
+    **/
+    _count?: true | StudentAgentAssignmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StudentAgentAssignmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StudentAgentAssignmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StudentAgentAssignmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StudentAgentAssignmentMaxAggregateInputType
+  }
+
+  export type GetStudentAgentAssignmentAggregateType<T extends StudentAgentAssignmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudentAgentAssignment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudentAgentAssignment[P]>
+      : GetScalarType<T[P], AggregateStudentAgentAssignment[P]>
+  }
+
+
+
+
+  export type StudentAgentAssignmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentAgentAssignmentWhereInput
+    orderBy?: StudentAgentAssignmentOrderByWithAggregationInput | StudentAgentAssignmentOrderByWithAggregationInput[]
+    by: StudentAgentAssignmentScalarFieldEnum[] | StudentAgentAssignmentScalarFieldEnum
+    having?: StudentAgentAssignmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StudentAgentAssignmentCountAggregateInputType | true
+    _avg?: StudentAgentAssignmentAvgAggregateInputType
+    _sum?: StudentAgentAssignmentSumAggregateInputType
+    _min?: StudentAgentAssignmentMinAggregateInputType
+    _max?: StudentAgentAssignmentMaxAggregateInputType
+  }
+
+  export type StudentAgentAssignmentGroupByOutputType = {
+    id: number
+    studentId: number
+    agentId: string
+    agentName: string | null
+    assignedAt: Date
+    _count: StudentAgentAssignmentCountAggregateOutputType | null
+    _avg: StudentAgentAssignmentAvgAggregateOutputType | null
+    _sum: StudentAgentAssignmentSumAggregateOutputType | null
+    _min: StudentAgentAssignmentMinAggregateOutputType | null
+    _max: StudentAgentAssignmentMaxAggregateOutputType | null
+  }
+
+  type GetStudentAgentAssignmentGroupByPayload<T extends StudentAgentAssignmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StudentAgentAssignmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StudentAgentAssignmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StudentAgentAssignmentGroupByOutputType[P]>
+            : GetScalarType<T[P], StudentAgentAssignmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StudentAgentAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    agentId?: boolean
+    agentName?: boolean
+    assignedAt?: boolean
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentAgentAssignment"]>
+
+  export type StudentAgentAssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    agentId?: boolean
+    agentName?: boolean
+    assignedAt?: boolean
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentAgentAssignment"]>
+
+  export type StudentAgentAssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    agentId?: boolean
+    agentName?: boolean
+    assignedAt?: boolean
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentAgentAssignment"]>
+
+  export type StudentAgentAssignmentSelectScalar = {
+    id?: boolean
+    studentId?: boolean
+    agentId?: boolean
+    agentName?: boolean
+    assignedAt?: boolean
+  }
+
+  export type StudentAgentAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "agentId" | "agentName" | "assignedAt", ExtArgs["result"]["studentAgentAssignment"]>
+  export type StudentAgentAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type StudentAgentAssignmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type StudentAgentAssignmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $StudentAgentAssignmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StudentAgentAssignment"
+    objects: {
+      student: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      studentId: number
+      agentId: string
+      agentName: string | null
+      assignedAt: Date
+    }, ExtArgs["result"]["studentAgentAssignment"]>
+    composites: {}
+  }
+
+  type StudentAgentAssignmentGetPayload<S extends boolean | null | undefined | StudentAgentAssignmentDefaultArgs> = $Result.GetResult<Prisma.$StudentAgentAssignmentPayload, S>
+
+  type StudentAgentAssignmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StudentAgentAssignmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StudentAgentAssignmentCountAggregateInputType | true
+    }
+
+  export interface StudentAgentAssignmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StudentAgentAssignment'], meta: { name: 'StudentAgentAssignment' } }
+    /**
+     * Find zero or one StudentAgentAssignment that matches the filter.
+     * @param {StudentAgentAssignmentFindUniqueArgs} args - Arguments to find a StudentAgentAssignment
+     * @example
+     * // Get one StudentAgentAssignment
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StudentAgentAssignmentFindUniqueArgs>(args: SelectSubset<T, StudentAgentAssignmentFindUniqueArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StudentAgentAssignment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StudentAgentAssignmentFindUniqueOrThrowArgs} args - Arguments to find a StudentAgentAssignment
+     * @example
+     * // Get one StudentAgentAssignment
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StudentAgentAssignmentFindUniqueOrThrowArgs>(args: SelectSubset<T, StudentAgentAssignmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentAgentAssignment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentFindFirstArgs} args - Arguments to find a StudentAgentAssignment
+     * @example
+     * // Get one StudentAgentAssignment
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StudentAgentAssignmentFindFirstArgs>(args?: SelectSubset<T, StudentAgentAssignmentFindFirstArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentAgentAssignment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentFindFirstOrThrowArgs} args - Arguments to find a StudentAgentAssignment
+     * @example
+     * // Get one StudentAgentAssignment
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StudentAgentAssignmentFindFirstOrThrowArgs>(args?: SelectSubset<T, StudentAgentAssignmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StudentAgentAssignments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StudentAgentAssignments
+     * const studentAgentAssignments = await prisma.studentAgentAssignment.findMany()
+     * 
+     * // Get first 10 StudentAgentAssignments
+     * const studentAgentAssignments = await prisma.studentAgentAssignment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const studentAgentAssignmentWithIdOnly = await prisma.studentAgentAssignment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StudentAgentAssignmentFindManyArgs>(args?: SelectSubset<T, StudentAgentAssignmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StudentAgentAssignment.
+     * @param {StudentAgentAssignmentCreateArgs} args - Arguments to create a StudentAgentAssignment.
+     * @example
+     * // Create one StudentAgentAssignment
+     * const StudentAgentAssignment = await prisma.studentAgentAssignment.create({
+     *   data: {
+     *     // ... data to create a StudentAgentAssignment
+     *   }
+     * })
+     * 
+     */
+    create<T extends StudentAgentAssignmentCreateArgs>(args: SelectSubset<T, StudentAgentAssignmentCreateArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StudentAgentAssignments.
+     * @param {StudentAgentAssignmentCreateManyArgs} args - Arguments to create many StudentAgentAssignments.
+     * @example
+     * // Create many StudentAgentAssignments
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StudentAgentAssignmentCreateManyArgs>(args?: SelectSubset<T, StudentAgentAssignmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StudentAgentAssignments and returns the data saved in the database.
+     * @param {StudentAgentAssignmentCreateManyAndReturnArgs} args - Arguments to create many StudentAgentAssignments.
+     * @example
+     * // Create many StudentAgentAssignments
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StudentAgentAssignments and only return the `id`
+     * const studentAgentAssignmentWithIdOnly = await prisma.studentAgentAssignment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StudentAgentAssignmentCreateManyAndReturnArgs>(args?: SelectSubset<T, StudentAgentAssignmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StudentAgentAssignment.
+     * @param {StudentAgentAssignmentDeleteArgs} args - Arguments to delete one StudentAgentAssignment.
+     * @example
+     * // Delete one StudentAgentAssignment
+     * const StudentAgentAssignment = await prisma.studentAgentAssignment.delete({
+     *   where: {
+     *     // ... filter to delete one StudentAgentAssignment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StudentAgentAssignmentDeleteArgs>(args: SelectSubset<T, StudentAgentAssignmentDeleteArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StudentAgentAssignment.
+     * @param {StudentAgentAssignmentUpdateArgs} args - Arguments to update one StudentAgentAssignment.
+     * @example
+     * // Update one StudentAgentAssignment
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StudentAgentAssignmentUpdateArgs>(args: SelectSubset<T, StudentAgentAssignmentUpdateArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StudentAgentAssignments.
+     * @param {StudentAgentAssignmentDeleteManyArgs} args - Arguments to filter StudentAgentAssignments to delete.
+     * @example
+     * // Delete a few StudentAgentAssignments
+     * const { count } = await prisma.studentAgentAssignment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StudentAgentAssignmentDeleteManyArgs>(args?: SelectSubset<T, StudentAgentAssignmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentAgentAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StudentAgentAssignments
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StudentAgentAssignmentUpdateManyArgs>(args: SelectSubset<T, StudentAgentAssignmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentAgentAssignments and returns the data updated in the database.
+     * @param {StudentAgentAssignmentUpdateManyAndReturnArgs} args - Arguments to update many StudentAgentAssignments.
+     * @example
+     * // Update many StudentAgentAssignments
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StudentAgentAssignments and only return the `id`
+     * const studentAgentAssignmentWithIdOnly = await prisma.studentAgentAssignment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StudentAgentAssignmentUpdateManyAndReturnArgs>(args: SelectSubset<T, StudentAgentAssignmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StudentAgentAssignment.
+     * @param {StudentAgentAssignmentUpsertArgs} args - Arguments to update or create a StudentAgentAssignment.
+     * @example
+     * // Update or create a StudentAgentAssignment
+     * const studentAgentAssignment = await prisma.studentAgentAssignment.upsert({
+     *   create: {
+     *     // ... data to create a StudentAgentAssignment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StudentAgentAssignment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StudentAgentAssignmentUpsertArgs>(args: SelectSubset<T, StudentAgentAssignmentUpsertArgs<ExtArgs>>): Prisma__StudentAgentAssignmentClient<$Result.GetResult<Prisma.$StudentAgentAssignmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StudentAgentAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentCountArgs} args - Arguments to filter StudentAgentAssignments to count.
+     * @example
+     * // Count the number of StudentAgentAssignments
+     * const count = await prisma.studentAgentAssignment.count({
+     *   where: {
+     *     // ... the filter for the StudentAgentAssignments we want to count
+     *   }
+     * })
+    **/
+    count<T extends StudentAgentAssignmentCountArgs>(
+      args?: Subset<T, StudentAgentAssignmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StudentAgentAssignmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StudentAgentAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StudentAgentAssignmentAggregateArgs>(args: Subset<T, StudentAgentAssignmentAggregateArgs>): Prisma.PrismaPromise<GetStudentAgentAssignmentAggregateType<T>>
+
+    /**
+     * Group by StudentAgentAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentAgentAssignmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StudentAgentAssignmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StudentAgentAssignmentGroupByArgs['orderBy'] }
+        : { orderBy?: StudentAgentAssignmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StudentAgentAssignmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudentAgentAssignmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StudentAgentAssignment model
+   */
+  readonly fields: StudentAgentAssignmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StudentAgentAssignment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StudentAgentAssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    student<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StudentAgentAssignment model
+   */
+  interface StudentAgentAssignmentFieldRefs {
+    readonly id: FieldRef<"StudentAgentAssignment", 'Int'>
+    readonly studentId: FieldRef<"StudentAgentAssignment", 'Int'>
+    readonly agentId: FieldRef<"StudentAgentAssignment", 'String'>
+    readonly agentName: FieldRef<"StudentAgentAssignment", 'String'>
+    readonly assignedAt: FieldRef<"StudentAgentAssignment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StudentAgentAssignment findUnique
+   */
+  export type StudentAgentAssignmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentAgentAssignment to fetch.
+     */
+    where: StudentAgentAssignmentWhereUniqueInput
+  }
+
+  /**
+   * StudentAgentAssignment findUniqueOrThrow
+   */
+  export type StudentAgentAssignmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentAgentAssignment to fetch.
+     */
+    where: StudentAgentAssignmentWhereUniqueInput
+  }
+
+  /**
+   * StudentAgentAssignment findFirst
+   */
+  export type StudentAgentAssignmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentAgentAssignment to fetch.
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentAgentAssignments to fetch.
+     */
+    orderBy?: StudentAgentAssignmentOrderByWithRelationInput | StudentAgentAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentAgentAssignments.
+     */
+    cursor?: StudentAgentAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentAgentAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentAgentAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentAgentAssignments.
+     */
+    distinct?: StudentAgentAssignmentScalarFieldEnum | StudentAgentAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * StudentAgentAssignment findFirstOrThrow
+   */
+  export type StudentAgentAssignmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentAgentAssignment to fetch.
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentAgentAssignments to fetch.
+     */
+    orderBy?: StudentAgentAssignmentOrderByWithRelationInput | StudentAgentAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentAgentAssignments.
+     */
+    cursor?: StudentAgentAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentAgentAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentAgentAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentAgentAssignments.
+     */
+    distinct?: StudentAgentAssignmentScalarFieldEnum | StudentAgentAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * StudentAgentAssignment findMany
+   */
+  export type StudentAgentAssignmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentAgentAssignments to fetch.
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentAgentAssignments to fetch.
+     */
+    orderBy?: StudentAgentAssignmentOrderByWithRelationInput | StudentAgentAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StudentAgentAssignments.
+     */
+    cursor?: StudentAgentAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentAgentAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentAgentAssignments.
+     */
+    skip?: number
+    distinct?: StudentAgentAssignmentScalarFieldEnum | StudentAgentAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * StudentAgentAssignment create
+   */
+  export type StudentAgentAssignmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StudentAgentAssignment.
+     */
+    data: XOR<StudentAgentAssignmentCreateInput, StudentAgentAssignmentUncheckedCreateInput>
+  }
+
+  /**
+   * StudentAgentAssignment createMany
+   */
+  export type StudentAgentAssignmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StudentAgentAssignments.
+     */
+    data: StudentAgentAssignmentCreateManyInput | StudentAgentAssignmentCreateManyInput[]
+  }
+
+  /**
+   * StudentAgentAssignment createManyAndReturn
+   */
+  export type StudentAgentAssignmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many StudentAgentAssignments.
+     */
+    data: StudentAgentAssignmentCreateManyInput | StudentAgentAssignmentCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentAgentAssignment update
+   */
+  export type StudentAgentAssignmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StudentAgentAssignment.
+     */
+    data: XOR<StudentAgentAssignmentUpdateInput, StudentAgentAssignmentUncheckedUpdateInput>
+    /**
+     * Choose, which StudentAgentAssignment to update.
+     */
+    where: StudentAgentAssignmentWhereUniqueInput
+  }
+
+  /**
+   * StudentAgentAssignment updateMany
+   */
+  export type StudentAgentAssignmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StudentAgentAssignments.
+     */
+    data: XOR<StudentAgentAssignmentUpdateManyMutationInput, StudentAgentAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentAgentAssignments to update
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * Limit how many StudentAgentAssignments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentAgentAssignment updateManyAndReturn
+   */
+  export type StudentAgentAssignmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * The data used to update StudentAgentAssignments.
+     */
+    data: XOR<StudentAgentAssignmentUpdateManyMutationInput, StudentAgentAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentAgentAssignments to update
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * Limit how many StudentAgentAssignments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentAgentAssignment upsert
+   */
+  export type StudentAgentAssignmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StudentAgentAssignment to update in case it exists.
+     */
+    where: StudentAgentAssignmentWhereUniqueInput
+    /**
+     * In case the StudentAgentAssignment found by the `where` argument doesn't exist, create a new StudentAgentAssignment with this data.
+     */
+    create: XOR<StudentAgentAssignmentCreateInput, StudentAgentAssignmentUncheckedCreateInput>
+    /**
+     * In case the StudentAgentAssignment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StudentAgentAssignmentUpdateInput, StudentAgentAssignmentUncheckedUpdateInput>
+  }
+
+  /**
+   * StudentAgentAssignment delete
+   */
+  export type StudentAgentAssignmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter which StudentAgentAssignment to delete.
+     */
+    where: StudentAgentAssignmentWhereUniqueInput
+  }
+
+  /**
+   * StudentAgentAssignment deleteMany
+   */
+  export type StudentAgentAssignmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentAgentAssignments to delete
+     */
+    where?: StudentAgentAssignmentWhereInput
+    /**
+     * Limit how many StudentAgentAssignments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentAgentAssignment without action
+   */
+  export type StudentAgentAssignmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentAgentAssignment
+     */
+    select?: StudentAgentAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentAgentAssignment
+     */
+    omit?: StudentAgentAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentAgentAssignmentInclude<ExtArgs> | null
   }
 
 
@@ -1911,6 +3202,17 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const StudentAgentAssignmentScalarFieldEnum: {
+    id: 'id',
+    studentId: 'studentId',
+    agentId: 'agentId',
+    agentName: 'agentName',
+    assignedAt: 'assignedAt'
+  };
+
+  export type StudentAgentAssignmentScalarFieldEnum = (typeof StudentAgentAssignmentScalarFieldEnum)[keyof typeof StudentAgentAssignmentScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1956,6 +3258,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1973,6 +3282,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    assignments?: StudentAgentAssignmentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -1980,6 +3290,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrderInput | SortOrder
     role?: SortOrder
+    assignments?: StudentAgentAssignmentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -1990,6 +3301,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    assignments?: StudentAgentAssignmentListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -2014,10 +3326,69 @@ export namespace Prisma {
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
+  export type StudentAgentAssignmentWhereInput = {
+    AND?: StudentAgentAssignmentWhereInput | StudentAgentAssignmentWhereInput[]
+    OR?: StudentAgentAssignmentWhereInput[]
+    NOT?: StudentAgentAssignmentWhereInput | StudentAgentAssignmentWhereInput[]
+    id?: IntFilter<"StudentAgentAssignment"> | number
+    studentId?: IntFilter<"StudentAgentAssignment"> | number
+    agentId?: StringFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableFilter<"StudentAgentAssignment"> | string | null
+    assignedAt?: DateTimeFilter<"StudentAgentAssignment"> | Date | string
+    student?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type StudentAgentAssignmentOrderByWithRelationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    agentId?: SortOrder
+    agentName?: SortOrderInput | SortOrder
+    assignedAt?: SortOrder
+    student?: UserOrderByWithRelationInput
+  }
+
+  export type StudentAgentAssignmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    studentId_agentId?: StudentAgentAssignmentStudentIdAgentIdCompoundUniqueInput
+    AND?: StudentAgentAssignmentWhereInput | StudentAgentAssignmentWhereInput[]
+    OR?: StudentAgentAssignmentWhereInput[]
+    NOT?: StudentAgentAssignmentWhereInput | StudentAgentAssignmentWhereInput[]
+    studentId?: IntFilter<"StudentAgentAssignment"> | number
+    agentId?: StringFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableFilter<"StudentAgentAssignment"> | string | null
+    assignedAt?: DateTimeFilter<"StudentAgentAssignment"> | Date | string
+    student?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "studentId_agentId">
+
+  export type StudentAgentAssignmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    agentId?: SortOrder
+    agentName?: SortOrderInput | SortOrder
+    assignedAt?: SortOrder
+    _count?: StudentAgentAssignmentCountOrderByAggregateInput
+    _avg?: StudentAgentAssignmentAvgOrderByAggregateInput
+    _max?: StudentAgentAssignmentMaxOrderByAggregateInput
+    _min?: StudentAgentAssignmentMinOrderByAggregateInput
+    _sum?: StudentAgentAssignmentSumOrderByAggregateInput
+  }
+
+  export type StudentAgentAssignmentScalarWhereWithAggregatesInput = {
+    AND?: StudentAgentAssignmentScalarWhereWithAggregatesInput | StudentAgentAssignmentScalarWhereWithAggregatesInput[]
+    OR?: StudentAgentAssignmentScalarWhereWithAggregatesInput[]
+    NOT?: StudentAgentAssignmentScalarWhereWithAggregatesInput | StudentAgentAssignmentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"StudentAgentAssignment"> | number
+    studentId?: IntWithAggregatesFilter<"StudentAgentAssignment"> | number
+    agentId?: StringWithAggregatesFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableWithAggregatesFilter<"StudentAgentAssignment"> | string | null
+    assignedAt?: DateTimeWithAggregatesFilter<"StudentAgentAssignment"> | Date | string
+  }
+
   export type UserCreateInput = {
     email: string
     name?: string | null
     role: $Enums.Role
+    assignments?: StudentAgentAssignmentCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2025,12 +3396,14 @@ export namespace Prisma {
     email: string
     name?: string | null
     role: $Enums.Role
+    assignments?: StudentAgentAssignmentUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    assignments?: StudentAgentAssignmentUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2038,6 +3411,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    assignments?: StudentAgentAssignmentUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2058,6 +3432,58 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type StudentAgentAssignmentCreateInput = {
+    agentId: string
+    agentName?: string | null
+    assignedAt?: Date | string
+    student: UserCreateNestedOneWithoutAssignmentsInput
+  }
+
+  export type StudentAgentAssignmentUncheckedCreateInput = {
+    id?: number
+    studentId: number
+    agentId: string
+    agentName?: string | null
+    assignedAt?: Date | string
+  }
+
+  export type StudentAgentAssignmentUpdateInput = {
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
+  }
+
+  export type StudentAgentAssignmentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentAgentAssignmentCreateManyInput = {
+    id?: number
+    studentId: number
+    agentId: string
+    agentName?: string | null
+    assignedAt?: Date | string
+  }
+
+  export type StudentAgentAssignmentUpdateManyMutationInput = {
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentAgentAssignmentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2106,9 +3532,19 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type StudentAgentAssignmentListRelationFilter = {
+    every?: StudentAgentAssignmentWhereInput
+    some?: StudentAgentAssignmentWhereInput
+    none?: StudentAgentAssignmentWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type StudentAgentAssignmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -2200,6 +3636,89 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type StudentAgentAssignmentStudentIdAgentIdCompoundUniqueInput = {
+    studentId: number
+    agentId: string
+  }
+
+  export type StudentAgentAssignmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    agentId?: SortOrder
+    agentName?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type StudentAgentAssignmentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type StudentAgentAssignmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    agentId?: SortOrder
+    agentName?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type StudentAgentAssignmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    agentId?: SortOrder
+    agentName?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type StudentAgentAssignmentSumOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StudentAgentAssignmentCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentAgentAssignmentCreateWithoutStudentInput, StudentAgentAssignmentUncheckedCreateWithoutStudentInput> | StudentAgentAssignmentCreateWithoutStudentInput[] | StudentAgentAssignmentUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentAgentAssignmentCreateOrConnectWithoutStudentInput | StudentAgentAssignmentCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentAgentAssignmentCreateManyStudentInputEnvelope
+    connect?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+  }
+
+  export type StudentAgentAssignmentUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentAgentAssignmentCreateWithoutStudentInput, StudentAgentAssignmentUncheckedCreateWithoutStudentInput> | StudentAgentAssignmentCreateWithoutStudentInput[] | StudentAgentAssignmentUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentAgentAssignmentCreateOrConnectWithoutStudentInput | StudentAgentAssignmentCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentAgentAssignmentCreateManyStudentInputEnvelope
+    connect?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2212,12 +3731,58 @@ export namespace Prisma {
     set?: $Enums.Role
   }
 
+  export type StudentAgentAssignmentUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentAgentAssignmentCreateWithoutStudentInput, StudentAgentAssignmentUncheckedCreateWithoutStudentInput> | StudentAgentAssignmentCreateWithoutStudentInput[] | StudentAgentAssignmentUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentAgentAssignmentCreateOrConnectWithoutStudentInput | StudentAgentAssignmentCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentAgentAssignmentUpsertWithWhereUniqueWithoutStudentInput | StudentAgentAssignmentUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentAgentAssignmentCreateManyStudentInputEnvelope
+    set?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    disconnect?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    delete?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    connect?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    update?: StudentAgentAssignmentUpdateWithWhereUniqueWithoutStudentInput | StudentAgentAssignmentUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentAgentAssignmentUpdateManyWithWhereWithoutStudentInput | StudentAgentAssignmentUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentAgentAssignmentScalarWhereInput | StudentAgentAssignmentScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type StudentAgentAssignmentUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentAgentAssignmentCreateWithoutStudentInput, StudentAgentAssignmentUncheckedCreateWithoutStudentInput> | StudentAgentAssignmentCreateWithoutStudentInput[] | StudentAgentAssignmentUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentAgentAssignmentCreateOrConnectWithoutStudentInput | StudentAgentAssignmentCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentAgentAssignmentUpsertWithWhereUniqueWithoutStudentInput | StudentAgentAssignmentUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentAgentAssignmentCreateManyStudentInputEnvelope
+    set?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    disconnect?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    delete?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    connect?: StudentAgentAssignmentWhereUniqueInput | StudentAgentAssignmentWhereUniqueInput[]
+    update?: StudentAgentAssignmentUpdateWithWhereUniqueWithoutStudentInput | StudentAgentAssignmentUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentAgentAssignmentUpdateManyWithWhereWithoutStudentInput | StudentAgentAssignmentUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentAgentAssignmentScalarWhereInput | StudentAgentAssignmentScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutAssignmentsInput = {
+    create?: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAssignmentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type UserUpdateOneRequiredWithoutAssignmentsNestedInput = {
+    create?: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAssignmentsInput
+    upsert?: UserUpsertWithoutAssignmentsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAssignmentsInput, UserUpdateWithoutAssignmentsInput>, UserUncheckedUpdateWithoutAssignmentsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2346,6 +3911,149 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StudentAgentAssignmentCreateWithoutStudentInput = {
+    agentId: string
+    agentName?: string | null
+    assignedAt?: Date | string
+  }
+
+  export type StudentAgentAssignmentUncheckedCreateWithoutStudentInput = {
+    id?: number
+    agentId: string
+    agentName?: string | null
+    assignedAt?: Date | string
+  }
+
+  export type StudentAgentAssignmentCreateOrConnectWithoutStudentInput = {
+    where: StudentAgentAssignmentWhereUniqueInput
+    create: XOR<StudentAgentAssignmentCreateWithoutStudentInput, StudentAgentAssignmentUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentAgentAssignmentCreateManyStudentInputEnvelope = {
+    data: StudentAgentAssignmentCreateManyStudentInput | StudentAgentAssignmentCreateManyStudentInput[]
+  }
+
+  export type StudentAgentAssignmentUpsertWithWhereUniqueWithoutStudentInput = {
+    where: StudentAgentAssignmentWhereUniqueInput
+    update: XOR<StudentAgentAssignmentUpdateWithoutStudentInput, StudentAgentAssignmentUncheckedUpdateWithoutStudentInput>
+    create: XOR<StudentAgentAssignmentCreateWithoutStudentInput, StudentAgentAssignmentUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentAgentAssignmentUpdateWithWhereUniqueWithoutStudentInput = {
+    where: StudentAgentAssignmentWhereUniqueInput
+    data: XOR<StudentAgentAssignmentUpdateWithoutStudentInput, StudentAgentAssignmentUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type StudentAgentAssignmentUpdateManyWithWhereWithoutStudentInput = {
+    where: StudentAgentAssignmentScalarWhereInput
+    data: XOR<StudentAgentAssignmentUpdateManyMutationInput, StudentAgentAssignmentUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type StudentAgentAssignmentScalarWhereInput = {
+    AND?: StudentAgentAssignmentScalarWhereInput | StudentAgentAssignmentScalarWhereInput[]
+    OR?: StudentAgentAssignmentScalarWhereInput[]
+    NOT?: StudentAgentAssignmentScalarWhereInput | StudentAgentAssignmentScalarWhereInput[]
+    id?: IntFilter<"StudentAgentAssignment"> | number
+    studentId?: IntFilter<"StudentAgentAssignment"> | number
+    agentId?: StringFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableFilter<"StudentAgentAssignment"> | string | null
+    assignedAt?: DateTimeFilter<"StudentAgentAssignment"> | Date | string
+  }
+
+  export type UserCreateWithoutAssignmentsInput = {
+    email: string
+    name?: string | null
+    role: $Enums.Role
+  }
+
+  export type UserUncheckedCreateWithoutAssignmentsInput = {
+    id?: number
+    email: string
+    name?: string | null
+    role: $Enums.Role
+  }
+
+  export type UserCreateOrConnectWithoutAssignmentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type UserUpsertWithoutAssignmentsInput = {
+    update: XOR<UserUpdateWithoutAssignmentsInput, UserUncheckedUpdateWithoutAssignmentsInput>
+    create: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAssignmentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAssignmentsInput, UserUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type UserUpdateWithoutAssignmentsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type UserUncheckedUpdateWithoutAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type StudentAgentAssignmentCreateManyStudentInput = {
+    id?: number
+    agentId: string
+    agentName?: string | null
+    assignedAt?: Date | string
+  }
+
+  export type StudentAgentAssignmentUpdateWithoutStudentInput = {
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentAgentAssignmentUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentAgentAssignmentUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

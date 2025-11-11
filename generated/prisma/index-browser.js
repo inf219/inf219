@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.17.1
- * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+ * Prisma Client JS version: 6.18.0
+ * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
  */
 Prisma.prismaVersion = {
-  client: "6.17.1",
-  engine: "272a37d34178c2894197e17273bf937f25acdeac"
+  client: "6.18.0",
+  engine: "34b5a692b7bd79939a9a2c3ef97d816e749cda2f"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -124,6 +124,14 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.StudentAgentAssignmentScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  agentId: 'agentId',
+  agentName: 'agentName',
+  assignedAt: 'assignedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,7 +148,8 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  StudentAgentAssignment: 'StudentAgentAssignment'
 };
 
 /**

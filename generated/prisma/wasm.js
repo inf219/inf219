@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.17.1
- * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+ * Prisma Client JS version: 6.18.0
+ * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
  */
 Prisma.prismaVersion = {
-  client: "6.17.1",
-  engine: "272a37d34178c2894197e17273bf937f25acdeac"
+  client: "6.18.0",
+  engine: "34b5a692b7bd79939a9a2c3ef97d816e749cda2f"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -96,6 +96,14 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.StudentAgentAssignmentScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  agentId: 'agentId',
+  agentName: 'agentName',
+  assignedAt: 'assignedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -112,7 +120,8 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  StudentAgentAssignment: 'StudentAgentAssignment'
 };
 /**
  * Create the Client
@@ -125,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\synne\\Documents\\dev\\inf219\\generated\\prisma",
+      "value": "/Users/emilie/Desktop/react/inf219/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -134,12 +143,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\synne\\Documents\\dev\\inf219\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/emilie/Desktop/react/inf219/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -147,8 +156,8 @@ const config = {
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
-  "clientVersion": "6.17.1",
-  "engineVersion": "272a37d34178c2894197e17273bf937f25acdeac",
+  "clientVersion": "6.18.0",
+  "engineVersion": "34b5a692b7bd79939a9a2c3ef97d816e749cda2f",
   "datasourceNames": [
     "db"
   ],
@@ -161,13 +170,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  STUDENT\n  TEACHER\n  ADMIN\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  role  Role\n}\n\n//model Post {\n//  id        Int     @id @default(autoincrement())\n//  title     String\n//  content   String?\n//  published Boolean @default(false)\n//  author    User    @relation(fields: [authorId], references: [id])\n//  authorId  Int\n//}\n",
-  "inlineSchemaHash": "b82398c47fc7c7de23261c3b443028726174dd7ed04ae52b2419940ff7a6f686",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  STUDENT\n  TEACHER\n  ADMIN\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  role  Role\n\n  assignments StudentAgentAssignment[]\n}\n\nmodel StudentAgentAssignment {\n  id         Int      @id @default(autoincrement())\n  studentId  Int\n  agentId    String\n  agentName  String?\n  assignedAt DateTime @default(now())\n\n  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)\n\n  @@unique([studentId, agentId]) // Prevents duplicate assignments\n}\n\n//model Post {\n//  id        Int     @id @default(autoincrement())\n//  title     String\n//  content   String?\n//  published Boolean @default(false)\n//  author    User    @relation(fields: [authorId], references: [id])\n//  authorId  Int\n//}\n",
+  "inlineSchemaHash": "cbeac3264ae4bb8abd82ef1b2b7c0255b58410c59d8034d2d61c9797028a43a5",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"assignments\",\"kind\":\"object\",\"type\":\"StudentAgentAssignment\",\"relationName\":\"StudentAgentAssignmentToUser\"}],\"dbName\":null},\"StudentAgentAssignment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"studentId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"agentId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"agentName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"assignedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"student\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"StudentAgentAssignmentToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

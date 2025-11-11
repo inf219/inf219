@@ -21,6 +21,12 @@ npm install
 - Database models: User (with email, name, role). Post model is commented out for now.
 - View the database easily with Prisma Studio
 
+# Elevenlabs configuration
+
+- You need to make a user on elevenlabs, and make an API-key.
+- You also need to save the voice you want to use on your user
+- The voice has its own voice-id which either needs to be "CMVyxPycEkgLpEF85ShA" or you can change the voice-id in the program in: agent/create
+
 ## Configuration
 
 Before running the app, create a `.env.local` file in the root of the project and add the following environment variables:
@@ -40,7 +46,7 @@ Set up the database with Prisma:
 npx prisma db push
 This created testsDB based on prisma/schema.prisma
 
-- To view/edid the database, run:
+- To view/edit the database, run:
 
 ```bash
   npx prisma studio

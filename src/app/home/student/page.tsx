@@ -1,4 +1,3 @@
-// page.tsx (i samme mappe som layout.tsx)
 import LinkButton from "@/app/components/buttons/linkButton";
 import UserWelcome from "@/app/components/userWelcome";
 import { auth } from "@/auth";
@@ -13,7 +12,7 @@ export default async function HomePage() {
       <UserWelcome name={session?.user?.name} role="Elev"></UserWelcome>
       <div className="mt-18">
         <LinkButton
-          href="/home/global/agents">
+          href="/home/student/agents">
             Gå til mine agenter
         </LinkButton>
       </div>
