@@ -4,36 +4,31 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Card from './card';
 
-interface Agent {
+interface AgentsResponse {
+    id: number;
     agent_id: string;
     name: string;
-    tags?: string;
+    created_by: number;
+    tags?: string[];
     // Add other fields from ElevenLabs response if needed (e.g., description)
 }
 
-interface AgentsResponse {
-    agents: Agent[];
-    has_more: boolean;
-    next_cursor: string | null;
-}
-
 export function AgentList() {
-    const [agents, setAgents] = useState<Agent[]>([]);
+    const [agents, setAgents] = useState<AgentsResponse[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
     const router = useRouter();
 
     useEffect(() => {
         const fetchAgents = async () => {
             try {
-                const response = await fetch("/api/list-agents");
+                const response = await fetch("/api/agents");
                 if (!response.ok) {
                     throw new Error(`Failed to fetch agents: ${response.statusText}`);
                 }
-                const data: AgentsResponse = await response.json();
+                const data = await response.json();
                 setAgents(data.agents);
             } catch (err) {
-                setError(err instanceof Error ? err.message : "Unknown error");
+                console.error(err instanceof Error ? err.message : "Unknown error");
             } finally {
                 setLoading(false);
             }
@@ -50,13 +45,13 @@ export function AgentList() {
         );
     }
 
-    if (error) {
-        return (
-            <div className="flex justify-center items-center min-h-64">
-                <p className="text-red-500 text-lg text-[var(--loading_color)]">Error: {error}</p>
-            </div>
-        );
-    }
+    // if (error) {
+    //     return (
+    //         <div className="flex justify-center items-center min-h-64">
+    //             <p className="text-red-500 text-lg text-[var(--loading_color)]">Error: {error}</p>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="w-full max-w-3xl"> {/* Increased from max-w-2xl to max-w-3xl (approx 1792px) */}

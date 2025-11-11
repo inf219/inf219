@@ -4,11 +4,11 @@ import { UserService } from '@/lib/services/userService';
 import { NextRequest, NextResponse } from 'next/server'; // Update import to include NextRequest
 
 
-
 const agentService = new AgentService();
 const userService = new UserService();
 
-
+// API-rute for å hente signert URL for en agent. 
+//Brukes for å starte en samtale med agenten.
 export async function GET(request: NextRequest) {  // Use NextRequest to access query params
     try {
         //Sjekk at brukeren er logget inn

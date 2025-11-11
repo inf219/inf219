@@ -1,6 +1,7 @@
 import {prisma} from "@/lib/prisma";
+import type { Agents } from "@prisma/client";
 
-
+//Alle metoder for å snakke med databasen (agents og studentAgentAssignment tabellene)
 export class AgentRepository {
     
     async addAgent(
@@ -21,6 +22,7 @@ export class AgentRepository {
         });
     }
 
+    //Obs. Søker på DATABASE id, ikke elevenlabs agent_id
     async findById(id: number) {
         return await prisma.agents.findUnique({
             where: {id},
@@ -28,8 +30,19 @@ export class AgentRepository {
     }
     
     async findByStudentId(student_id: number) {
-        return await prisma.agents.findMany({
+        const assignments = await prisma.studentAgentAssignment.findMany({
             where: {student_id},
+            include: {
+                agent: true
+            }
+        });
+
+        return assignments.map(assignment => assignment.agent);
+    }
+
+    async deleteById(id: number) {
+        return await prisma.agents.delete({
+            where: {id},
         });
     }
     

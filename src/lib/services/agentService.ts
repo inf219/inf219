@@ -1,6 +1,5 @@
 import { AgentRepository } from "../repositories/agentRepository";
 import { CreateAgentDto, ElevenLabsCreateAgentResponse, AgentDto } from "../dto/agentDto";
-import { user } from "@elevenlabs/elevenlabs-js/api";
 
 
 
@@ -80,13 +79,17 @@ export class AgentService {
 
     }
 
+    //Kalles for visning av agentene (henter fra database)
     async getAgentsForUser(userId: number, userRole: string) {
+        console.log('Fetching agents for user:', userId, 'with role:', userRole);
         if (userRole === 'ADMIN' || userRole === 'TEACHER') {
             return await agentRepository.findAll();
         }
         if (userRole === 'STUDENT') {
             return await agentRepository.findByStudentId(userId);
         }
+
+        return [];
     }
 
 }
