@@ -2115,6 +2115,7 @@ export namespace Prisma {
     id: number | null
     studentId: number | null
     agentId: string | null
+    agentName: string | null
     assignedAt: Date | null
   }
 
@@ -2122,6 +2123,7 @@ export namespace Prisma {
     id: number | null
     studentId: number | null
     agentId: string | null
+    agentName: string | null
     assignedAt: Date | null
   }
 
@@ -2129,6 +2131,7 @@ export namespace Prisma {
     id: number
     studentId: number
     agentId: number
+    agentName: number
     assignedAt: number
     _all: number
   }
@@ -2148,6 +2151,7 @@ export namespace Prisma {
     id?: true
     studentId?: true
     agentId?: true
+    agentName?: true
     assignedAt?: true
   }
 
@@ -2155,6 +2159,7 @@ export namespace Prisma {
     id?: true
     studentId?: true
     agentId?: true
+    agentName?: true
     assignedAt?: true
   }
 
@@ -2162,6 +2167,7 @@ export namespace Prisma {
     id?: true
     studentId?: true
     agentId?: true
+    agentName?: true
     assignedAt?: true
     _all?: true
   }
@@ -2256,6 +2262,7 @@ export namespace Prisma {
     id: number
     studentId: number
     agentId: string
+    agentName: string | null
     assignedAt: Date
     _count: StudentAgentAssignmentCountAggregateOutputType | null
     _avg: StudentAgentAssignmentAvgAggregateOutputType | null
@@ -2282,6 +2289,7 @@ export namespace Prisma {
     id?: boolean
     studentId?: boolean
     agentId?: boolean
+    agentName?: boolean
     assignedAt?: boolean
     student?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentAgentAssignment"]>
@@ -2290,6 +2298,7 @@ export namespace Prisma {
     id?: boolean
     studentId?: boolean
     agentId?: boolean
+    agentName?: boolean
     assignedAt?: boolean
     student?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentAgentAssignment"]>
@@ -2298,6 +2307,7 @@ export namespace Prisma {
     id?: boolean
     studentId?: boolean
     agentId?: boolean
+    agentName?: boolean
     assignedAt?: boolean
     student?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentAgentAssignment"]>
@@ -2306,10 +2316,11 @@ export namespace Prisma {
     id?: boolean
     studentId?: boolean
     agentId?: boolean
+    agentName?: boolean
     assignedAt?: boolean
   }
 
-  export type StudentAgentAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "agentId" | "assignedAt", ExtArgs["result"]["studentAgentAssignment"]>
+  export type StudentAgentAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "agentId" | "agentName" | "assignedAt", ExtArgs["result"]["studentAgentAssignment"]>
   export type StudentAgentAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     student?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2329,6 +2340,7 @@ export namespace Prisma {
       id: number
       studentId: number
       agentId: string
+      agentName: string | null
       assignedAt: Date
     }, ExtArgs["result"]["studentAgentAssignment"]>
     composites: {}
@@ -2757,6 +2769,7 @@ export namespace Prisma {
     readonly id: FieldRef<"StudentAgentAssignment", 'Int'>
     readonly studentId: FieldRef<"StudentAgentAssignment", 'Int'>
     readonly agentId: FieldRef<"StudentAgentAssignment", 'String'>
+    readonly agentName: FieldRef<"StudentAgentAssignment", 'String'>
     readonly assignedAt: FieldRef<"StudentAgentAssignment", 'DateTime'>
   }
     
@@ -3195,6 +3208,7 @@ export namespace Prisma {
     id: 'id',
     studentId: 'studentId',
     agentId: 'agentId',
+    agentName: 'agentName',
     assignedAt: 'assignedAt'
   };
 
@@ -3319,6 +3333,7 @@ export namespace Prisma {
     id?: IntFilter<"StudentAgentAssignment"> | number
     studentId?: IntFilter<"StudentAgentAssignment"> | number
     agentId?: StringFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableFilter<"StudentAgentAssignment"> | string | null
     assignedAt?: DateTimeFilter<"StudentAgentAssignment"> | Date | string
     student?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -3327,6 +3342,7 @@ export namespace Prisma {
     id?: SortOrder
     studentId?: SortOrder
     agentId?: SortOrder
+    agentName?: SortOrderInput | SortOrder
     assignedAt?: SortOrder
     student?: UserOrderByWithRelationInput
   }
@@ -3339,6 +3355,7 @@ export namespace Prisma {
     NOT?: StudentAgentAssignmentWhereInput | StudentAgentAssignmentWhereInput[]
     studentId?: IntFilter<"StudentAgentAssignment"> | number
     agentId?: StringFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableFilter<"StudentAgentAssignment"> | string | null
     assignedAt?: DateTimeFilter<"StudentAgentAssignment"> | Date | string
     student?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "studentId_agentId">
@@ -3347,6 +3364,7 @@ export namespace Prisma {
     id?: SortOrder
     studentId?: SortOrder
     agentId?: SortOrder
+    agentName?: SortOrderInput | SortOrder
     assignedAt?: SortOrder
     _count?: StudentAgentAssignmentCountOrderByAggregateInput
     _avg?: StudentAgentAssignmentAvgOrderByAggregateInput
@@ -3362,6 +3380,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"StudentAgentAssignment"> | number
     studentId?: IntWithAggregatesFilter<"StudentAgentAssignment"> | number
     agentId?: StringWithAggregatesFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableWithAggregatesFilter<"StudentAgentAssignment"> | string | null
     assignedAt?: DateTimeWithAggregatesFilter<"StudentAgentAssignment"> | Date | string
   }
 
@@ -3417,6 +3436,7 @@ export namespace Prisma {
 
   export type StudentAgentAssignmentCreateInput = {
     agentId: string
+    agentName?: string | null
     assignedAt?: Date | string
     student: UserCreateNestedOneWithoutAssignmentsInput
   }
@@ -3425,11 +3445,13 @@ export namespace Prisma {
     id?: number
     studentId: number
     agentId: string
+    agentName?: string | null
     assignedAt?: Date | string
   }
 
   export type StudentAgentAssignmentUpdateInput = {
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     student?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
   }
@@ -3438,6 +3460,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     studentId?: IntFieldUpdateOperationsInput | number
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3445,11 +3468,13 @@ export namespace Prisma {
     id?: number
     studentId: number
     agentId: string
+    agentName?: string | null
     assignedAt?: Date | string
   }
 
   export type StudentAgentAssignmentUpdateManyMutationInput = {
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3457,6 +3482,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     studentId?: IntFieldUpdateOperationsInput | number
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3635,6 +3661,7 @@ export namespace Prisma {
     id?: SortOrder
     studentId?: SortOrder
     agentId?: SortOrder
+    agentName?: SortOrder
     assignedAt?: SortOrder
   }
 
@@ -3647,6 +3674,7 @@ export namespace Prisma {
     id?: SortOrder
     studentId?: SortOrder
     agentId?: SortOrder
+    agentName?: SortOrder
     assignedAt?: SortOrder
   }
 
@@ -3654,6 +3682,7 @@ export namespace Prisma {
     id?: SortOrder
     studentId?: SortOrder
     agentId?: SortOrder
+    agentName?: SortOrder
     assignedAt?: SortOrder
   }
 
@@ -3911,12 +3940,14 @@ export namespace Prisma {
 
   export type StudentAgentAssignmentCreateWithoutStudentInput = {
     agentId: string
+    agentName?: string | null
     assignedAt?: Date | string
   }
 
   export type StudentAgentAssignmentUncheckedCreateWithoutStudentInput = {
     id?: number
     agentId: string
+    agentName?: string | null
     assignedAt?: Date | string
   }
 
@@ -3952,6 +3983,7 @@ export namespace Prisma {
     id?: IntFilter<"StudentAgentAssignment"> | number
     studentId?: IntFilter<"StudentAgentAssignment"> | number
     agentId?: StringFilter<"StudentAgentAssignment"> | string
+    agentName?: StringNullableFilter<"StudentAgentAssignment"> | string | null
     assignedAt?: DateTimeFilter<"StudentAgentAssignment"> | Date | string
   }
 
@@ -4000,23 +4032,27 @@ export namespace Prisma {
   export type StudentAgentAssignmentCreateManyStudentInput = {
     id?: number
     agentId: string
+    agentName?: string | null
     assignedAt?: Date | string
   }
 
   export type StudentAgentAssignmentUpdateWithoutStudentInput = {
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentAgentAssignmentUncheckedUpdateWithoutStudentInput = {
     id?: IntFieldUpdateOperationsInput | number
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentAgentAssignmentUncheckedUpdateManyWithoutStudentInput = {
     id?: IntFieldUpdateOperationsInput | number
     agentId?: StringFieldUpdateOperationsInput | string
+    agentName?: NullableStringFieldUpdateOperationsInput | string | null
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

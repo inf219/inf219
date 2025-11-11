@@ -49,7 +49,7 @@ export default function AssignAgentPage() {
   }, [studentId]);
 
   // this handles the checkbox
-  const handleAssign = async (agentId: string, assign: boolean) => {
+  const handleAssign = async (agentId: string, assign: boolean, agentName: string) => {
     // help from chat gpt to assign and unnasign
     setAssigned((prev) => 
       assign ? [...new Set([...prev, agentId])] : prev.filter((id) => id !== agentId)
@@ -59,7 +59,7 @@ export default function AssignAgentPage() {
       const res = await fetch('/api/assign-agent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studentId: parseInt(studentId as string), agentId, assign }),
+        body: JSON.stringify({ studentId: parseInt(studentId as string), agentId, assign, agentName }),
       });
       if (!res.ok) throw new Error('Failed to update assignment');
     } catch (err) {
@@ -98,7 +98,7 @@ export default function AssignAgentPage() {
                   <input
                     type="checkbox"
                     checked={assigned.includes(agent.agent_id)}
-                    onChange={(e) => handleAssign(agent.agent_id, e.target.checked)}
+                    onChange={(e) => handleAssign(agent.agent_id, e.target.checked, agent.name)}
                     className="mr-2"
                   />
                   Tildelt

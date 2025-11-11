@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { studentId, agentId, assign } = body;
+    const { studentId, agentId, assign, agentName } = body;
 
     if (!studentId || !agentId || typeof assign !== "boolean") {
         return NextResponse.json({ error: "Missing or invalid parameters" }, { status: 400 });
@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
             // Assign: Create if not exists (@@unique prevents duplicates)
             await prisma.studentAgentAssignment.upsert({
                 where: { studentId_agentId: { studentId: parseInt(studentId), agentId } },
-                update: {}, // No update needed if exists
-                create: { studentId: parseInt(studentId), agentId },
+                update: { agentName },
+                create: { studentId: parseInt(studentId), agentId, agentName },
             });
         } else {
             // Unassign: Delete if exists

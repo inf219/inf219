@@ -30,6 +30,7 @@ model StudentAgentAssignment {
   id        Int    @id @default(autoincrement())
   studentId Int
   agentId   String
+  agentName String?
   assignedAt DateTime @default(now())
 
   student   User   @relation(fields: [studentId], references: [id], onDelete: Cascade)

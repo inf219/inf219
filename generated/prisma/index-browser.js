@@ -128,6 +128,7 @@ exports.Prisma.StudentAgentAssignmentScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   agentId: 'agentId',
+  agentName: 'agentName',
   assignedAt: 'assignedAt'
 };
 
