@@ -1,29 +1,47 @@
+export const runtime = 'nodejs';
 import { NextRequest, NextResponse } from "next/server";
+import { AgentService } from "@/lib/services/agentService";
+import { UserService } from "@/lib/services/userService";
+import { auth } from "@/auth";
+
+const agentService = new AgentService();
+const userService = new UserService();
 
 export async function GET(req: NextRequest) {
-    const API_KEY = process.env.ELEVENLABS_API_KEY;
-
-    if (!API_KEY) {
-        return NextResponse.json({ error: "API key not configured" }, { status: 500 });
-    }
-
     try {
-        const res = await fetch("https://api.elevenlabs.io/v1/convai/agents", {
-            method: "GET",
-            headers: {
-                "xi-api-key": API_KEY,
-            },
-        });
-
-        if (!res.ok) {
-            const errText = await res.text();
-            return NextResponse.json({ error: "Failed to fetch agents", details: errText }, { status: res.status });
+        //Sjekk autentisering
+        const session = await auth();
+        
+        if (!session?.user?.email) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const data = await res.json();
+        //Hent bruker
+        const user = await userService.getUserByEmail(session.user.email as string);
+        
+        if (!user) {
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
+        }
+
+        //Sjekk at bruker er lærer eller admin
+        if (user.role !== 'TEACHER' && user.role !== 'ADMIN') {
+            return NextResponse.json(
+                { error: "Only teachers and admins can access this" },
+                { status: 403 }
+            );
+        }
+
+        //Hent agenter fra ElevenLabs via service
+        const data = await agentService.getAllAgentsFromElevenlabs();
+
+        //Returner data
         return NextResponse.json(data);
-    } catch (error) {
-        console.error("Error fetching agents:", error);
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+
+    } catch (error: any) {
+        console.error("Error fetching agents from ElevenLabs:", error);
+        return NextResponse.json(
+            { error: error.message || "Internal server error" },
+            { status: 500 }
+        );
     }
 }

@@ -59,6 +59,8 @@ export async function POST(req: NextRequest) {
 
 }
     
+
+//Henter alle agenter som er lagret i databasen
 export async function GET() {
         try {
             const session = await auth();

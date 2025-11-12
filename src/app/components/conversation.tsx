@@ -19,6 +19,7 @@ export function Conversation() {
         if (!agent_id) {
             throw new Error('Ingen agent ID oppgitt. Velg en agent fra listen.');
         }
+        console.log('AGENT_ID hentet i conversation: ', agent_id);
 
         const response = await fetch(`/api/get-signed-url?agent_id=${agent_id}`);  // Pass agent_id as query param
         if (!response.ok) {

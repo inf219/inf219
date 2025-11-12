@@ -92,4 +92,26 @@ export class AgentService {
         return [];
     }
 
+    async getAllAgentsFromElevenlabs() {        
+        try {
+            const res = await fetch("https://api.elevenlabs.io/v1/convai/agents", {
+                method: "GET",
+                headers: {
+                    "xi-api-key": this.API_KEY,
+                },
+            });
+        
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error("Failed to fetch agents: " + errText);
+            }
+        
+            const data = await res.json();
+                return data;
+        } catch (error) {
+            console.error("Error fetching agents:", error);
+            throw new Error("Internal server error");
+        }
+    }
+
 }
